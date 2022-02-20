@@ -1,14 +1,14 @@
 {
-    "name": "nurab-ui-kit",
-    "version": "5.8.1",
+    "name": "faralley-ui-kit",
+    "version": "1.0.0",
     "author": {
-        "name": "NUrab",
+        "name": "faralley",
         "email": "faralley.nl@gmail.com"
     },
     "description": "An UI kit which can be used in several applications",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/eversteeg/nurab-ui-kit.git"
+        "url": "git+https://github.com/eversteeg/faralley-ui-kit.git"
     },
     "keywords": [
         "UI kit",
@@ -16,9 +16,9 @@
         "Styled Components"
     ],
     "bugs": {
-        "url": "https://github.com/eversteeg/nurab-ui-kit/issues"
+        "url": "https://github.com/eversteeg/faralley-ui-kit/issues"
     },
-    "homepage": "https://github.com/eversteeg/nurab-ui-kit#readme",
+    "homepage": "https://github.com/eversteeg/faralley-ui-kit#readme",
     "license": "MIT",
     "main": "index.js",
     "module": "index.esm.js",

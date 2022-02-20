@@ -1,7 +1,7 @@
-### Pull Request (PR) nurab-ui-kit
+### Pull Request (PR) faralley-ui-kit
 
 **Jira link**:
-*https://jira.nurab.nl/browse/[Paste Jira issue here]*
+*https://jira.faralley.nl/browse/[Paste Jira issue here]*
 
 **Description of the pull request**:
 *The PR description goes here*

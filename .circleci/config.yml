@@ -13,7 +13,7 @@ references:
                   username: $DOCKERHUB_USER
                   password: $DOCKERHUB_PASS
 
-        working_directory: ~/nurab-ui-kit
+        working_directory: ~/faralley-ui-kit
     restore_dependencies: &restore_dependencies
         restore_cache:
             # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
@@ -92,24 +92,24 @@ workflows:
         jobs:
             - install_dependencies:
                 context:
-                    - nurab_docker_hub
+                    - faralley_docker_hub
             - lint_javascript:
                 context:
-                    - nurab_docker_hub
+                    - faralley_docker_hub
                 requires:
                     - install_dependencies
             - lint_css:
                 context:
-                    - nurab_docker_hub
+                    - faralley_docker_hub
                 requires:
                     - install_dependencies
             - check_types:
                 context:
-                    - nurab_docker_hub
+                    - faralley_docker_hub
                 requires:
                     - install_dependencies
             # - jest:
             #     context:
-            #         - nurab_docker_hub
+            #         - faralley_docker_hub
             #     requires:
             #         - install_dependencies

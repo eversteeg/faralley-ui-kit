@@ -1,10 +1,10 @@
 # Workflow explanation
 
-We're using [Jira](https://jira.nurab.nl/) to monitor and facilitate the way we work on this codebase. If you're going to work on this project you will need your own Jira account. If you don't have one please check with the people at nurab so they can set one up for you.
+We're using [Jira](https://jira.faralley.nl/) to monitor and facilitate the way we work on this codebase. If you're going to work on this project you will need your own Jira account. If you don't have one please check with the people at FarAlley so they can set one up for you.
 
 Assuming you've a Jira account, this is the way how you're supposed to work on a ticket:
 
-- First things first, there needs to be a ticket for each feature or request for change NUrab wants. In general NUrab will create and write the tickets but there are some cases in which a developer will create his own tickets. Some examples: tech debt tickets and internally found bug tickets.
+- First things first, there needs to be a ticket for each feature or request for change FarAlley wants. In general FarAlley will create and write the tickets but there are some cases in which a developer will create his own tickets. Some examples: tech debt tickets and internally found bug tickets.
 - All tickets which are ready to be picked up should be in the `Ready for development` column. Tickets in this lane should **always** be unassigned. All columns before this stage aren't that relevant for us developers since they are revolving around UX and UI design.
 - When you decide to start working on a ticket you should move it to `Development` column. When you do this you should also assign the ticket to yourself.
 - Every ticket needs to have its own branch. For features we will prefix every branch like this: `_fb-cw-187-some-small-description`. `_fb` means feature branch, `cw-187` is the ticket number and `some-small-description` is, well, a small description about the ticket. This description makes it easier to find branches since you don't have to memoirize ticket numbers.
