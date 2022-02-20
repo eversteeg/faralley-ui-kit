@@ -1,0 +1,10 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "eslint.enable": true,
+    "files.eol": "\n",
+    "files.trimTrailingWhitespace": true,
+    "javascript.validate.enable": false,
+    "typescript.validate.enable": true,
+}

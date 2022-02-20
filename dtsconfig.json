@@ -1,0 +1,25 @@
+{
+    "entries": [
+        {
+            "filePath": "./src/lib/index.ts",
+            "libraries": {
+                "allowedTypesLibraries": [],
+                "importedLibraries": [
+                    "currency.js",
+                    "moment",
+                    "react",
+                    "react-dates",
+                    "react-table",
+                    "styled-components"
+                ]
+            },
+            "outFile": "./index.d.ts",
+            "output": {
+                "noBanner": true,
+                "inlineDeclareExternals": true,
+                "sortNodes": true,
+                "umdModuleName": "NUrabUIKit"
+            }
+        }
+    ]
+}

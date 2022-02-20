@@ -1,0 +1,5 @@
+export enum ChipStatusVariant {
+    DESELECTED = 'DESELECTED',
+    INDETERMINATE = 'INDETERMINATE',
+    SELECTED = 'SELECTED',
+}

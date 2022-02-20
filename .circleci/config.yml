@@ -1,0 +1,115 @@
+# Configuration based on:
+# - https://circleci.com/docs/2.0/language-javascript/
+# - https://github.com/circleci/frontend/blob/master/.circleci/config.yml
+# If you want to learn more about YAML check out the following documentation:
+# - https://learnxinyminutes.com/docs/yaml/
+version: 2.1
+
+references:
+    container_config: &container_config
+        docker:
+            - image: circleci/node:14.14.0
+              auth:
+                  username: $DOCKERHUB_USER
+                  password: $DOCKERHUB_PASS
+
+        working_directory: ~/nurab-ui-kit
+    restore_dependencies: &restore_dependencies
+        restore_cache:
+            # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
+            key: dependency-cache-{{ checksum "package.json" }}
+
+jobs:
+    install_dependencies:
+        <<: *container_config
+        steps:
+            - checkout
+            - run:
+                name: Update NPM
+                command: sudo npm install -g npm@latest
+            - *restore_dependencies
+            - run:
+                name: Install dependencies
+                command: npm install
+            - save_cache:
+                key: dependency-cache-{{ checksum "package.json" }}
+                paths:
+                    - ./node_modules
+    lint_javascript:
+        <<: *container_config
+        steps:
+            - checkout
+            - *restore_dependencies
+            - run:
+                name: Run ESLint
+                command: npm run lint:js -- --format junit --output-file reports/junit/js-lint-results.xml
+            - store_test_results:
+                path: reports/junit
+            - store_artifacts:
+                path: reports/junit
+    lint_css:
+        <<: *container_config
+        steps:
+            - checkout
+            - *restore_dependencies
+            - run:
+                command: |
+                    mkdir -p reports/junit
+                    npm run lint:css -- --custom-formatter 'node_modules/stylelint-junit-formatter' --output-file reports/junit/css-lint-results.xml
+            - store_test_results:
+                path: reports/junit
+            - store_artifacts:
+                path: reports/junit
+    check_types:
+        <<: *container_config
+        steps:
+            - checkout
+            - *restore_dependencies
+            - run:
+                command: |
+                    mkdir -p reports/junit
+                    npm run check-types
+            - store_test_results:
+                path: reports/junit
+            - store_artifacts:
+                path: reports/junit
+    jest:
+        <<: *container_config
+        steps:
+            - checkout
+            - *restore_dependencies
+            - run:
+                command: |
+                    mkdir -p reports/junit
+                    npm run test -- --forceExit --reporters='default' --json --outputFile='reports/junit/junit.xml'
+            - store_test_results:
+                path: reports/junit
+            - store_artifacts:
+                path: reports/junit
+
+workflows:
+    install_dependencies_and_lint:
+        jobs:
+            - install_dependencies:
+                context:
+                    - nurab_docker_hub
+            - lint_javascript:
+                context:
+                    - nurab_docker_hub
+                requires:
+                    - install_dependencies
+            - lint_css:
+                context:
+                    - nurab_docker_hub
+                requires:
+                    - install_dependencies
+            - check_types:
+                context:
+                    - nurab_docker_hub
+                requires:
+                    - install_dependencies
+            # - jest:
+            #     context:
+            #         - nurab_docker_hub
+            #     requires:
+            #         - install_dependencies
