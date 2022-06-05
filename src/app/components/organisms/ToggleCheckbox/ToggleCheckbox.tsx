@@ -38,7 +38,7 @@ export const ToggleCheckbox: FunctionComponent<ToggleCheckboxProps> = ({
                 iconType={iconOn}
                 isDisabled={isDisabled}
                 isInverted={!isChecked}
-                onClick={onClick}
+                onClick={isDisabled ? undefined : onClick}
                 size={size}
                 variant={ButtonVariant.FILLED}
             >
@@ -48,7 +48,7 @@ export const ToggleCheckbox: FunctionComponent<ToggleCheckboxProps> = ({
                 iconType={iconOff}
                 isDisabled={isDisabled}
                 isInverted={isChecked}
-                onClick={onClick}
+                onClick={isDisabled ? undefined : onClick}
                 size={size}
                 variant={ButtonVariant.FILLED}
             >

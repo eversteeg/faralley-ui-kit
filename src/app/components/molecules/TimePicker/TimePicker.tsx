@@ -1,7 +1,8 @@
 import { DropdownWrapper, StyledTimePicker } from './TimePicker.sc';
-import React, { FunctionComponent, ReactNode, useMemo } from 'react';
+import React, { FunctionComponent, ReactNode, useMemo, useState } from 'react';
 import { Dropdown } from '../Dropdown';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
+import { isEmpty } from '../../../utils/functions/validateFunctions';
 import SelectOption from '../../atoms/SelectOption/SelectOption';
 
 export interface TimePickerProps {
@@ -9,9 +10,12 @@ export interface TimePickerProps {
     errorMessage?: ReactNode;
     hasError?: boolean;
     isDisabled?: boolean;
+    isRequired?: boolean;
     minuteStep?: number;
     name: string;
     onChange: (name: string, time: TimePickerProps['value']) => void;
+    placeholderHours?: string;
+    placeholderMinutes?: string;
     value: [string, string];
 }
 
@@ -19,12 +23,21 @@ export const TimePicker: FunctionComponent<TimePickerProps> = ({
     autoFocus = false,
     errorMessage,
     hasError = false,
-    isDisabled,
+    isDisabled = false,
+    isRequired = false,
     minuteStep = 5,
     name,
     onChange,
+    placeholderHours,
+    placeholderMinutes,
     value,
 }) => {
+    const [timeValue, setTimeValue] = useState<[string, string]>(
+        value === null || (isEmpty(value[0]) && isEmpty(value[1]))
+            ? [placeholderHours || '', placeholderMinutes || '']
+            : value
+    );
+
     const hours = useMemo(
         () =>
             Array.from(Array(24).keys()).map((key) => {
@@ -59,11 +72,14 @@ export const TimePicker: FunctionComponent<TimePickerProps> = ({
                         autoFocus={autoFocus}
                         hasError={hasError}
                         isDisabled={isDisabled}
+                        isRequired={isRequired}
                         name={`${name}-hours`}
                         onChange={({ currentTarget }): void => {
-                            onChange(name, [currentTarget.value, value[1]]);
+                            setTimeValue([currentTarget.value, timeValue[1]]);
+                            onChange(name, [currentTarget.value, timeValue[1]]);
                         }}
-                        value={value[0]}
+                        placeholder={placeholderHours}
+                        value={timeValue[0]}
                     >
                         {hours.map((hour) => (
                             <SelectOption key={hour} value={hour}>
@@ -78,9 +94,11 @@ export const TimePicker: FunctionComponent<TimePickerProps> = ({
                         isDisabled={isDisabled}
                         name={`${name}-minutes`}
                         onChange={({ currentTarget }): void => {
-                            onChange(name, [value[0], currentTarget.value]);
+                            setTimeValue([timeValue[0], currentTarget.value]);
+                            onChange(name, [timeValue[0], currentTarget.value]);
                         }}
-                        value={value[1]}
+                        placeholder={placeholderMinutes}
+                        value={timeValue[1]}
                     >
                         {minutes.map((minute) => (
                             <SelectOption key={minute} value={minute}>

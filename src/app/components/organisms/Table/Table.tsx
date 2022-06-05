@@ -37,7 +37,7 @@ import { sum } from './utils/aggregateFunctions';
 import toNumber from '../../../utils/functions/toNumber';
 
 export interface TableTexts {
-    sortByTooltip?: ReactNode;
+    sortByTooltip?: string;
 }
 
 export interface TableProps<T extends object> {

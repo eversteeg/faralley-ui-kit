@@ -1,6 +1,6 @@
 import { Easing, SidePanelSize } from '../../../types';
 import { HeaderWrapper, StyledSidePanel } from './SidePanel.sc';
-import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import { ButtonIconProps } from '../../molecules/ButtonIcon/ButtonIcon';
 import Header from '../../molecules/Header/Header';
 import Overlay from '../../molecules/Overlay/Overlay';
@@ -11,7 +11,6 @@ export interface SidePanelProps {
     className?: string;
     isModalSidePanel?: boolean; // When used within a modal, then z-index needs to be handled correctly
     isVisible: boolean;
-    onBack?: MouseEventHandler;
     options?: ReactNode;
     size?: SidePanelSize;
     title: ReactNode;

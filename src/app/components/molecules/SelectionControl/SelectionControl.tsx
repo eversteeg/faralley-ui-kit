@@ -110,12 +110,12 @@ export const SelectionControl: FunctionComponent<SelectionControlProps & { [key:
                         checked={isChecked}
                         disabled={isDisabled}
                         name={name}
-                        onChange={onChange}
+                        onChange={isDisabled ? undefined : onChange}
                         type={type}
                         value={value}
                     />
                 </InputWrapper>
-                <LabelWrapper direction={direction} isDisabled={isDisabled} onClick={onChange}>
+                <LabelWrapper direction={direction} isDisabled={isDisabled} onClick={isDisabled ? undefined : onChange}>
                     <Label
                         hasAlternativeTextStyle={hasAlternativeTextStyle}
                         hasError={hasError}

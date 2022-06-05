@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import React, { FunctionComponent, ReactNode, SyntheticEvent, useEffect, useState } from 'react';
 import { StyledTabs, TabHeader, TabHeaders, TabHeaderText, TabPanel } from './Tabs.sc';
 import { isEmpty } from '../../../utils/functions/validateFunctions';

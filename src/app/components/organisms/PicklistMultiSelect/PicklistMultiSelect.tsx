@@ -153,7 +153,11 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
                         <Button
                             iconType={IconType.ARROWRIGHT}
                             isDisabled={isDisabled || isEmpty(availableOptionsInstance.selectedFlatRows)}
-                            onClick={onAddToSelectionCallback}
+                            onClick={
+                                isDisabled || isEmpty(availableOptionsInstance.selectedFlatRows)
+                                    ? undefined
+                                    : onAddToSelectionCallback
+                            }
                             size={ButtonSize.SMALL}
                             variant={ButtonVariant.OUTLINE}
                         >
@@ -199,7 +203,11 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
                         <Button
                             iconType={IconType.ARROWLEFT}
                             isDisabled={isDisabled || isEmpty(selectedOptionsInstance.selectedFlatRows)}
-                            onClick={onRemoveFromSelectionCallback}
+                            onClick={
+                                isDisabled || isEmpty(selectedOptionsInstance.selectedFlatRows)
+                                    ? undefined
+                                    : onRemoveFromSelectionCallback
+                            }
                             size={ButtonSize.SMALL}
                             variant={ButtonVariant.OUTLINE}
                         >

@@ -35,7 +35,7 @@ const themeCyrillicValues: Theme = createDuiTheme(themeBasicDefinition(fontFamil
 export const themeCyrillic: Theme = {
     ...themeCyrillicValues,
 
-    colorDisabled: themeCyrillicValues.shades.seven,
+    colorDisabled: themeCyrillicValues.shades.six,
 
     colorTextContrast: {
         primary: themeCyrillicValues.shades.nine,

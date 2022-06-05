@@ -4,7 +4,6 @@ import { MenuItems } from '../types';
 export const menuItems: MenuItems = [
     {
         children: [],
-        exact: true,
         iconType: IconType.WORLD,
         // eslint-disable-next-line no-console
         onClick: (): void => console.log('clicked Home'),
@@ -41,7 +40,7 @@ export const menuItems: MenuItems = [
                 text: 'Velden',
             },
         ],
-        iconType: IconType.MATCHOWN,
+        iconType: IconType.CONE,
         path: '/wedstrijden',
         text: 'Wedstrijden',
     },

@@ -9,7 +9,6 @@ import TextWithOptionalIcon from '../../../molecules/TextWithOptionalIcon/TextWi
 
 interface ItemsProps {
     children?: ReactNode;
-    exact?: boolean;
     hasChildren?: boolean;
     iconType?: IconType;
     isDisabled?: boolean;
@@ -22,7 +21,6 @@ interface ItemsProps {
 
 const Item: FunctionComponent<ItemsProps> = ({
     children = undefined,
-    exact = false,
     hasChildren = false,
     iconType = undefined,
     isDisabled = false,
@@ -35,7 +33,7 @@ const Item: FunctionComponent<ItemsProps> = ({
     isVisible ? (
         <StyledItem hasChildren={hasChildren} isDisabled={isDisabled} isParent={isParent}>
             {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-            <Inner as={path ? NavLink : ('div' as any)} exact={exact} onClick={isDisabled ? null : onClick} to={path}>
+            <Inner as={path ? NavLink : ('div' as any)} onClick={isDisabled ? null : onClick} to={path}>
                 <TextWrapper>
                     <TextWithOptionalIcon iconSize={IconSize.MEDIUM} iconType={iconType} isTruncatable>
                         {children}

@@ -135,6 +135,8 @@ export interface TimePickerDataProps extends BaseDataProps {
 export interface EditableTimePickerDataProps extends TimePickerDataProps {
     minuteStep?: TimePickerProps['minuteStep'];
     name: TimePickerProps['name'];
+    placeholderHours?: TimePickerProps['placeholderHours'];
+    placeholderMinutes?: TimePickerProps['placeholderMinutes'];
 }
 
 export interface ScorePickerDataProps extends BaseDataProps {

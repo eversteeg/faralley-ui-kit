@@ -26,7 +26,7 @@ export const ListItem: FunctionComponent<ListItemProps> = ({
         isFocused={isFocused}
         isHovered={isHovered}
         isLighter={isLighter}
-        onClick={onClick}
+        onClick={isDisabled ? undefined : onClick}
     >
         {adornment && (
             <AdornmentWrapper isDisabled={isDisabled} isFocused={isFocused} isHovered={isHovered}>

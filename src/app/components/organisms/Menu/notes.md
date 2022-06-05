@@ -11,7 +11,6 @@ In the stories file, you'll find a nice working example of how to deal with expa
 export const menuItems = [
     {
         children: [],
-        exact: true,
         iconType: ICON_TYPES.WORLD,
         path: '/',
         text: 'Home',

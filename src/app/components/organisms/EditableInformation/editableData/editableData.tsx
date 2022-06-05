@@ -438,6 +438,8 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                             isDisabled={isDisabled}
                             name={name}
                             onChange={onChange}
+                            placeholderHours={dataInstance.placeholderHours}
+                            placeholderMinutes={dataInstance.placeholderMinutes}
                             value={values[name] as TimePickerProps['value']}
                         />
                     ),

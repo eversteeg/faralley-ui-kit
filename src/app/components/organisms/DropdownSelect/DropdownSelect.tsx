@@ -82,7 +82,7 @@ export const DropdownSelect = <T extends DropdownSelectOption>({
     }, []);
 
     const handleOnChange = (newOption: T) => {
-        if (onChange) {
+        if (onChange && !isDisabled) {
             onChange({
                 ...newOption,
                 label: newOption.label || inputValue,
@@ -136,7 +136,7 @@ export const DropdownSelect = <T extends DropdownSelectOption>({
             setInputValue(selectedOption.label);
             handleOnChange(selectedOption);
 
-            if (onConfirm) {
+            if (onConfirm && !isDisabled) {
                 onConfirm(event, selectedOption);
             }
 
@@ -192,9 +192,9 @@ export const DropdownSelect = <T extends DropdownSelectOption>({
                 isValid={isValid}
                 label={label}
                 name={name}
-                onChange={onChangeCallback}
-                onFocus={onFocusCallback}
-                onKeyDown={onKeyDownCallback}
+                onChange={isDisabled ? undefined : onChangeCallback}
+                onFocus={isDisabled ? undefined : onFocusCallback}
+                onKeyDown={isDisabled ? undefined : onKeyDownCallback}
                 type={InputType.TEXT}
                 value={inputValue}
                 variant={variant}

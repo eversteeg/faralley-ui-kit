@@ -90,6 +90,7 @@ const pagingText = <T extends object>(instance: TableInstance<T>, texts: Paginat
 };
 
 export const Paginator = <T extends object>({
+    className,
     hasAllPagingButtons = true,
     hasGoToPage = false,
     hasPageSizeSelector = true,
@@ -109,7 +110,7 @@ export const Paginator = <T extends object>({
     return (
         <StyledPaginator>
             {hasPageSizeSelector && (
-                <PageSizeSelector>
+                <PageSizeSelector className={className}>
                     <PageSizeSelectorText isDisabled={localIsDisabled}>{texts.show}</PageSizeSelectorText>
                     <Dropdown
                         isDisabled={localIsDisabled}

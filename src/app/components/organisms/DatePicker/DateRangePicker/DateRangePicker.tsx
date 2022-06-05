@@ -105,7 +105,7 @@ export const DateRangePicker: FunctionComponent<DateRangePickerProps> = ({
         footerButtons.push({
             children: buttonConfirmText,
             iconType: IconType.CHECK,
-            onClick: onConfirm,
+            onClick: isDisabled ? undefined : onConfirm,
             size: ButtonSize.SMALL,
         });
     }

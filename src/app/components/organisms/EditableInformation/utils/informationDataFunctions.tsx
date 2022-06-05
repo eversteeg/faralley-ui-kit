@@ -10,6 +10,7 @@ import {
     EditableInputCurrencyDataProps,
     EditableInputDataProps,
     EditableInputNumberDataProps,
+    EditableTimePickerDataProps,
     InputDataProps,
     ValueTypes,
 } from '../types';
@@ -173,6 +174,18 @@ export const isValidEditableInput = <T extends DropdownSelectOption, U extends D
                             ).name
                         ] || null
                     )
+                );
+
+            case EditableDataComponent.TIMEPICKER:
+                // eslint-disable-next-line no-case-declarations
+                const timeValue = values[(item as EditableTimePickerDataProps).name] as [string, string];
+
+                return (
+                    !item.isRequired ||
+                    (!isEmpty(timeValue[0]) &&
+                        timeValue[0] !== ((item as EditableTimePickerDataProps).placeholderHours as string) &&
+                        !isEmpty(timeValue[1]) &&
+                        timeValue[1] !== ((item as EditableTimePickerDataProps).placeholderMinutes as string))
                 );
 
             case EditableDataComponent.INPUT:

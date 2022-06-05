@@ -2,7 +2,6 @@ import { IconType } from '../../../types';
 import { ReactNode } from 'react';
 
 export interface MenuItemChild {
-    exact?: boolean;
     isDisabled?: boolean;
     isVisible?: boolean;
     onClick?: () => void;

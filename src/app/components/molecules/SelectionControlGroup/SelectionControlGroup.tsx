@@ -112,7 +112,7 @@ export const SelectionControlGroup: FunctionComponent<SelectionControlGroupProps
                                 key={index}
                                 label={option.label}
                                 name={groupName}
-                                onChange={onChangeCallback}
+                                onChange={isDisabled || option.isDisabled ? undefined : onChangeCallback}
                                 type={SelectionControlType.RADIO}
                                 value={option.value}
                             />

@@ -127,12 +127,12 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
             setIsBeingEdited(false);
         }
 
-        if (onSave) {
+        if (onSave && !isDisabled) {
             // Note: if in the onChange prop we cause a re-render of this component with an updated originalValues then areEqualObjects will always return false.
             // In that case it will be needed to either call areEqualObjects outside with the real originalValues or keep the value of isDataChanged in the onChange in a local state
             onSave(updatedValues, !areEqualObjects(originalValues, updatedValues));
         }
-    }, [keepEditMode, onSave, originalValues, updatedValues]);
+    }, [keepEditMode, onSave, originalValues, updatedValues, isDisabled]);
 
     const onCancelCallback = useCallback(() => {
         setIsBeingEdited(false);
@@ -171,11 +171,11 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
 
             setUpdatedValues(newValues);
 
-            if (callExternOnChange && onChange) {
+            if (callExternOnChange && onChange && !isDisabled) {
                 onChange(newValues, !areEqualObjects(newValues, originalValues));
             }
         },
-        [localeValue, onChange, originalValues, updatedValues]
+        [localeValue, onChange, originalValues, updatedValues, isDisabled]
     );
 
     const onDatePickerFocusChangeCallback = useCallback(
@@ -205,11 +205,11 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
 
             setUpdatedValues(newValues);
 
-            if (onChange) {
+            if (onChange && !isDisabled) {
                 onChange(newValues, !areEqualObjects(newValues, originalValues));
             }
         },
-        [onChange, originalValues, updatedValues]
+        [onChange, originalValues, updatedValues, isDisabled]
     );
 
     useEffect(() => {

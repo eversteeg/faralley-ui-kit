@@ -377,7 +377,7 @@ export const ConfigurableAlertWithDatePicker: FunctionComponent = () => {
                     },
                     {
                         children: 'Confirm date',
-                        iconType: IconType.USERREMOVE,
+                        iconType: IconType.USERMINUS,
                         onClick: (): void => {
                             setIsVisible(false);
                         },

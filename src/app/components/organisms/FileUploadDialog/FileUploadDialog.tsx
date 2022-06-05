@@ -48,7 +48,7 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
     errors,
     fileNameLength = 100,
     fileTypes,
-    iconType = IconType.FILEADD,
+    iconType = IconType.FILEPLUS,
     labelInputDescription,
     labelInputName,
     iconCancel = IconType.CROSS,

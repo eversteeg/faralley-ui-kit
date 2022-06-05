@@ -147,7 +147,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
                             <Button
                                 iconType={iconCancel}
                                 isDisabled={isSaving}
-                                onClick={onCancelCallback}
+                                onClick={isSaving ? undefined : onCancelCallback}
                                 size={ButtonSize.SMALL}
                                 variant={ButtonVariant.TEXT_ONLY}
                             >
@@ -157,7 +157,9 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
                                 iconType={iconSave}
                                 isDisabled={isButtonDisabled || isDisabled || hasError}
                                 isLoading={isSaving}
-                                onClick={!hasError ? onSaveCallback : undefined}
+                                onClick={
+                                    isButtonDisabled || isDisabled || hasError || isSaving ? undefined : onSaveCallback
+                                }
                                 size={ButtonSize.SMALL}
                                 variant={ButtonVariant.OUTLINE}
                             >
@@ -171,7 +173,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
                                 iconType={iconEdit}
                                 isDisabled={isButtonDisabled || isDisabled}
                                 isLoading={isSaving}
-                                onClick={setIsBeingEditedCallback}
+                                onClick={isButtonDisabled || isDisabled ? undefined : setIsBeingEditedCallback}
                                 size={ButtonSize.SMALL}
                                 variant={ButtonVariant.TEXT_ONLY}
                             >
@@ -198,7 +200,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
                         {
                             children: saveConfirmDialog.buttonConfirmText,
                             iconType: IconType.CHECK,
-                            onClick: onConfirmSaveCallback,
+                            onClick: isDisabled ? undefined : onConfirmSaveCallback,
                             size: ButtonSize.SMALL,
                         },
                     ]}

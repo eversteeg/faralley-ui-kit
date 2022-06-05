@@ -51,7 +51,6 @@ export interface DropdownMultiSelectProps<T extends DropdownMultiSelectOption> {
     placeholder?: string;
     resetOnOutsideClick?: boolean;
     selectAllLabel: ReactNode;
-    value?: string;
     variant?: DropdownVariant;
 }
 
@@ -110,7 +109,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
 
         if (resetValuesOnOutsideClick) {
             setUpdatedOptions(originalOptions);
-        } else {
+        } else if (!isDisabled) {
             onConfirm(event, updatedOptions);
         }
     };
@@ -280,7 +279,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
         footerButtons.push({
             children: buttonCancelText,
             iconType: IconType.CROSS,
-            onClick: onCancelCallback,
+            onClick: isDisabled ? undefined : onCancelCallback,
             size: ButtonSize.SMALL,
             variant: ButtonVariant.TEXT_ONLY,
         });
@@ -289,7 +288,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     footerButtons.push({
         children: buttonConfirmText,
         iconType: IconType.CHECK,
-        onClick: onConfirmCallback,
+        onClick: isDisabled ? undefined : onConfirmCallback,
         size: ButtonSize.SMALL,
     });
 
@@ -307,7 +306,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
                     isValid={isValid}
                     label={label}
                     name={name}
-                    onClick={hasOptions ? onClickCallback : undefined}
+                    onClick={hasOptions && !isDisabled ? onClickCallback : undefined}
                     onMouseEnter={onMouseEnterCallback}
                     onMouseLeave={onMouseLeaveCallback}
                     placeholder={placeholder}

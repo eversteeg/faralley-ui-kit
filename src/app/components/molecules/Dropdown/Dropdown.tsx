@@ -14,6 +14,7 @@ import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
 import { IconCustomizable } from '../IconCustomizable/IconCustomizable';
 import { IconCustomizableSize } from '../IconCustomizable/types';
+import { isEmpty } from '../../../utils/functions/validateFunctions';
 import SelectOption from '../../atoms/SelectOption/SelectOption';
 
 export interface DropdownOption extends OptionObject {}
@@ -66,8 +67,9 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
 }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
-    const isEmpty = useMemo(() => options && options.length === 0, [options]);
-    const placeholderText = !isEmpty ? placeholder : noOptionsText || placeholder;
+    const isEmptyOptions = useMemo(() => options && options.length === 0, [options]);
+    const placeholderText = !isEmptyOptions ? placeholder : noOptionsText || placeholder;
+    const isPlaceholderSelected = placeholder === value || isEmpty(value) || isEmptyOptions;
 
     return (
         <>
@@ -98,17 +100,17 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
                     autoFocus={autoFocus}
                     hasError={hasError}
                     isDisabled={isDisabled}
-                    isEmpty={isEmpty}
+                    isEmpty={isEmptyOptions}
                     isFocused={isFocused || isOpen}
                     isHovered={isHovered}
-                    isPlaceholderSelected={placeholder === value || isEmpty}
+                    isPlaceholderSelected={isPlaceholderSelected}
                     isValid={isValid}
                     name={name}
                     onBlur={(): void => {
                         setIsFocused(false);
                     }}
-                    onChange={onChange}
-                    onClick={!isEmpty ? onClick : undefined}
+                    onChange={isDisabled ? undefined : onChange}
+                    onClick={!isEmptyOptions && !isDisabled ? onClick : undefined}
                     onFocus={(): void => {
                         setIsFocused(true);
                     }}
@@ -127,7 +129,7 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
                             <SelectOption isDisabled isHidden value={placeholderText}>
                                 {placeholderText}
                             </SelectOption>
-                            {isEmpty && (
+                            {isEmptyOptions && (
                                 <SelectOption key={'dummy'} value={placeholderText}>
                                     {placeholderText}
                                 </SelectOption>
@@ -136,7 +138,7 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
                     )}
 
                     {options &&
-                        !isEmpty &&
+                        !isEmptyOptions &&
                         options.map((option) => (
                             <SelectOption key={`option-${option.value}`} value={option.value}>
                                 {option.label}

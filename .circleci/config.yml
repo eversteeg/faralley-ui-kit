@@ -8,7 +8,7 @@ version: 2.1
 references:
     container_config: &container_config
         docker:
-            - image: circleci/node:14.14.0
+            - image: circleci/node:16.13.1
               auth:
                   username: $DOCKERHUB_USER
                   password: $DOCKERHUB_PASS
@@ -30,7 +30,7 @@ jobs:
             - *restore_dependencies
             - run:
                 name: Install dependencies
-                command: npm install
+                command: npm install --legacy-peer-deps
             - save_cache:
                 key: dependency-cache-{{ checksum "package.json" }}
                 paths:
@@ -86,30 +86,70 @@ jobs:
                 path: reports/junit
             - store_artifacts:
                 path: reports/junit
+    build:
+        <<: *container_config
+        steps:
+            - checkout
+            - *restore_dependencies
+            - attach_workspace:
+                at: ~/faralley-ui-kit
+            - run:
+                name: Run build
+                command: npm run dist
+            - persist_to_workspace:
+                root: ~/faralley-ui-kit
+                paths: .
+    deploy:
+        <<: *container_config
+        steps:
+            - attach_workspace:
+                at: ~/faralley-ui-kit
+            # - run:
+            #     name: Authenticate with registry
+            #     command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/faralley-ui-kit/.npmrc
+            - run:
+                name: Publish the package
+                command: |
+                   npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+                   npm publish
 
 workflows:
     install_dependencies_and_lint:
         jobs:
             - install_dependencies:
                 context:
-                    - faralley_docker_hub
+                    - faralley_docker
             - lint_javascript:
                 context:
-                    - faralley_docker_hub
+                    - faralley_docker
                 requires:
                     - install_dependencies
             - lint_css:
                 context:
-                    - faralley_docker_hub
+                    - faralley_docker
                 requires:
                     - install_dependencies
             - check_types:
                 context:
-                    - faralley_docker_hub
+                    - faralley_docker
                 requires:
                     - install_dependencies
             # - jest:
             #     context:
-            #         - faralley_docker_hub
+            #         - faralley_docker
             #     requires:
             #         - install_dependencies
+            - build:
+                requires:
+                    - lint_javascript
+                    - lint_css
+                    - check_types
+                filters:
+                    branches:
+                        only: develop
+            - deploy:
+                requires:
+                    - build
+                filters:
+                    branches:
+                        only: develop

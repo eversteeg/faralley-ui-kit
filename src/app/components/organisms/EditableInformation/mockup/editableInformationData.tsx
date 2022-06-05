@@ -236,6 +236,27 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
     } as EditableTimePickerDataProps);
 
     result.push({
+        component: EditableDataComponent.TIMEPICKER,
+        isEditable: true,
+        label: 'Editable Time (empty)',
+        name: 'EditableTimeEmpty',
+        placeholderHours: 'Hour',
+        placeholderMinutes: 'Min.',
+        value: ['', ''],
+    } as EditableTimePickerDataProps);
+
+    result.push({
+        component: EditableDataComponent.TIMEPICKER,
+        isEditable: true,
+        isRequired: true,
+        label: 'Editable Time (empty, but required)',
+        name: 'EditableTimeEmptyRequired',
+        placeholderHours: 'Hour',
+        placeholderMinutes: 'Min.',
+        value: ['', ''],
+    } as EditableTimePickerDataProps);
+
+    result.push({
         component: EditableDataComponent.CHECKBOX,
         isEditable: true,
         label: 'Checkbox 2',
