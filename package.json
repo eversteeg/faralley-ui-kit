@@ -1,6 +1,6 @@
 {
     "name": "faralley-ui-kit",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "author": {
         "name": "faralley",
         "email": "faralley.nl@gmail.com"
@@ -150,4 +150,4 @@
         "tslib": "^2.3.1",
         "typescript": "^4.2.4"
     }
-} 
+}
