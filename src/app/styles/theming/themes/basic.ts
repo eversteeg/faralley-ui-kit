@@ -51,6 +51,9 @@ export const themeBasicDefinition = (fontFamilyPrimary: string, fontFamilySecond
     card: {
         backgroundColor: shades.nine,
     },
+    overlay: {
+        backgroundColor: shades.one,
+    },
     colorAlert,
     colorDisabled,
     colorInvalid,

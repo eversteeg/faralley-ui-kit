@@ -107,6 +107,9 @@ export const themeDark: Theme = {
     card: {
         backgroundColor: colorShadeEleven,
     },
+    overlay: {
+        backgroundColor: themeDarkValues.shades.nine,
+    },
 
     datePicker: {
         backgroundColor: colorShadeEleven,

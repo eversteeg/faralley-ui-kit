@@ -14,7 +14,6 @@ import { themeBasic } from '../app/styles/theming/themes/basic';
 import { themeCyrillic } from '../app/styles/theming/themes/cyrillic';
 import { themeCyrillicDark } from '../app/styles/theming/themes/cyrillicdark';
 import { themeDark } from '../app/styles/theming/themes/dark';
-import { withInfo } from '@storybook/addon-info';
 import { withThemesProvider } from 'storybook-addon-styled-component-theme';
 import Wrapper from './components/Wrapper/Wrapper';
 import { WrapperWidth } from './components/Wrapper/types';
@@ -23,7 +22,6 @@ import { WrapperWidth } from './components/Wrapper/types';
 moment.locale('nl');
 
 // Make info and knobs addons available in all stories
-addDecorator(withInfo);
 addDecorator(withKnobs);
 
 // Wrap all stories in a custom Wrapper component

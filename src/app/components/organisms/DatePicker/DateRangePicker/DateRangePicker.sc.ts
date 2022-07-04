@@ -1,8 +1,12 @@
+import styled, { css, SimpleInterpolation } from 'styled-components';
 import { setCentered } from '../../../../styles/mixins/setCentered';
-import styled from 'styled-components';
 import { themeBasic } from '../../../../styles/theming/themes/basic';
 
-export const StyledDateRangePicker = styled.div`
+export const StyledWrapper = styled.div``;
+interface StyledDateRangePickerProps {
+    isTopDatepicker: boolean;
+}
+export const StyledDateRangePicker = styled.div<StyledDateRangePickerProps>`
     .DateRangePickerInput {
         display: flex;
         flex-wrap: nowrap;
@@ -40,6 +44,14 @@ export const StyledDateRangePicker = styled.div`
     .CalendarDay__default.CalendarDay__selected_span {
         background-color: ${({ theme }): string => theme.colorTertiary};
         color: ${({ theme }): string => theme.colorTextContrast.primary};
+    }
+
+    .DateRangePicker_picker {
+        ${({ isTopDatepicker }): SimpleInterpolation =>
+            isTopDatepicker &&
+            css`
+                margin-bottom: 8px;
+            `}
     }
 `;
 

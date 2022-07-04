@@ -3,6 +3,7 @@ import moment, { Moment } from 'moment';
 import React, { FunctionComponent, useState } from 'react';
 import DateRangePicker from './DateRangePicker';
 import { FocusedInputShape } from 'react-dates';
+import styled from 'styled-components';
 
 const defaultEndDate = moment().add(1, 'w');
 const defaultStartDate = moment();
@@ -233,5 +234,52 @@ export const WithYearSelector: FunctionComponent = () => {
             yearCount={number('Year count', 100)}
             yearCountFuture={number('Year count future', 0)}
         />
+    );
+};
+
+const ThinWrapper = styled.div`
+    width: 300px;
+`;
+
+export const DatePickerAlignRight: FunctionComponent = () => {
+    const [endDate, setEndDate] = useState<Moment | null>(defaultEndDate);
+    const [startDate, setStartDate] = useState<Moment | null>(defaultStartDate);
+    const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(null);
+    const [wrapperElementRef, setWrapperElementRef] = useState<HTMLDivElement | null>(null);
+
+    return (
+        <ThinWrapper className="Parent" ref={setWrapperElementRef}>
+            <DateRangePicker
+                displayFormat={text('Display format', 'ddd D MMM Y')}
+                endDate={endDate}
+                endDateId="daterangepicker_withyearselector_end"
+                endDatePlaceholderText={text('End date placeholder text', 'Eind datum')}
+                focusedInput={focusedInput}
+                hasYearSelector
+                isDayBlocked={(day): boolean => day.day() === 1}
+                isDayHighlighted={(day): boolean => day.day() === 3}
+                isDisabled={boolean('Is disabled', false)}
+                isRequired={boolean('Is required', false)}
+                keepOpenOnDateSelect={boolean('Keep open on date select', true)}
+                label={text('Label', 'Vakantie periode')}
+                labelMonth={text('Label month', 'Maand')}
+                labelYear={text('Label year', 'Jaar')}
+                minimumNights={number('Minimum nights', 1)}
+                numberOfMonths={1}
+                onDatesChange={(event): void => {
+                    setStartDate(event.startDate);
+                    setEndDate(event.endDate);
+                }}
+                onFocusChange={(input): void => {
+                    setFocusedInput(input);
+                }}
+                parentContainer={wrapperElementRef || undefined}
+                startDate={startDate}
+                startDateId="daterangepicker_withyearselector_start"
+                startDatePlaceholderText={text('Start date placeholder text', 'Start datum')}
+                yearCount={number('Year count', 100)}
+                yearCountFuture={number('Year count future', 0)}
+            />
+        </ThinWrapper>
     );
 };

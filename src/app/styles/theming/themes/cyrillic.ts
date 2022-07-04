@@ -109,6 +109,9 @@ export const themeCyrillic: Theme = {
     card: {
         backgroundColor: themeCyrillicValues.shades.nine,
     },
+    overlay: {
+        backgroundColor: '#000000',
+    },
 
     datePicker: {
         backgroundColor: themeCyrillicValues.shades.nine,

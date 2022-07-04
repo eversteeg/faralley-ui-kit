@@ -19,7 +19,7 @@ export const StyledOverlay = styled.div<OverlayProps>`
     opacity: ${({ isVisible }): string => (isVisible ? '0.4' : '0')};
     /* When isModalSidePanel = true, then we need to make sure that the modal is not clickable as long as the sidepanel is visible */
     z-index: ${({ isModalSidePanel }): number => (isModalSidePanel ? zIndex.SIDEPANEL + 1 : zIndex.OVERLAY)};
-    background-color: black;
+    background-color: ${({ theme }): string => theme.overlay.backgroundColor};
     cursor: ${({ isClickable }): string => (isClickable ? 'pointer' : 'auto')};
     width: 100%;
     height: 100%;

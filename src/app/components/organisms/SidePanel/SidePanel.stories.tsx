@@ -27,13 +27,13 @@ export const Configurable: FunctionComponent = () => (
         isVisible
         options={functionalItems}
         title={text('Header title', 'Heading')}
-    >
-        {text('Body', 'Some body text')}
-    </SidePanel>
+    />
 );
 
 export const ConfigurableSidePanel: FunctionComponent = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const [isSticky] = useState(true);
+    const [hasSubheader, setHasSubheader] = useState(false);
 
     const onBack = (): void => {
         action('On back');
@@ -49,7 +49,7 @@ export const ConfigurableSidePanel: FunctionComponent = () => {
                 }}
                 variant={ButtonVariant.FILLED}
             >
-                {isVisible ? 'SIDE PANNEL IS SHOWING' : 'SHOW SIDE PANNEL'}
+                {isVisible ? 'SIDE PANEL IS SHOWING' : 'SHOW SIDE PANEL'}
             </Button>
             <SidePanel
                 buttons={[
@@ -59,14 +59,42 @@ export const ConfigurableSidePanel: FunctionComponent = () => {
                     },
                 ]}
                 isModalSidePanel={boolean('Is within modal', false)}
+                isSticky={boolean('Sticky', isSticky)}
                 isVisible={isVisible}
                 options={functionalItems}
                 size={select('Size', SidePanelSize, SidePanelSize.MEDIUM)}
+                subHeader={
+                    hasSubheader ? (
+                        <div
+                            style={{
+                                backgroundColor: 'blue',
+                                border: '1px solid #000',
+                                color: 'white',
+                            }}
+                        >
+                            {'Subheader comes here'}
+                        </div>
+                    ) : undefined
+                }
                 title={text('Header title', 'Heading')}
                 transitionDuration={number('Transition duration', 500)}
                 transitionEasing={select('Transition type', Easing, Easing.EASE)}
             >
-                {text('Body', 'Some body text')}
+                <div>
+                    {
+                        'BODY: QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY QWERTY '
+                    }
+                </div>
+                <Button
+                    onClick={(): void => {
+                        setHasSubheader(!hasSubheader);
+                    }}
+                    size={ButtonSize.SMALL}
+                    variant={ButtonVariant.FILLED}
+                >
+                    {hasSubheader ? 'Hide Subheader' : 'Show Subheader'}
+                </Button>
+                <div>{isSticky ? 'STICKY BUSINESS' : 'NON STICKY BUSINESS'}</div>
             </SidePanel>
         </>
     );

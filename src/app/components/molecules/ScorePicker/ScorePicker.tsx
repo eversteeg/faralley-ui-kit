@@ -10,6 +10,8 @@ export interface ScorePickerProps {
     hasError?: boolean;
     isDisabled?: boolean;
     label: [ReactNode, ReactNode];
+    max?: number;
+    min?: number;
     name: string;
     onChange: (name: string, score: ScorePickerProps['value']) => void;
     value: [string, string];
@@ -22,6 +24,8 @@ export const ScorePicker: FunctionComponent<ScorePickerProps> = ({
     isDisabled,
     label,
     name,
+    max = 999,
+    min = 0,
     onChange,
     value,
 }) => (
@@ -33,7 +37,8 @@ export const ScorePicker: FunctionComponent<ScorePickerProps> = ({
                     hasError={hasError}
                     isDisabled={isDisabled}
                     label={label[0]}
-                    min={0}
+                    max={max}
+                    min={min}
                     name={`${name}-home`}
                     onChange={({ currentTarget }): void => {
                         onChange(name, [currentTarget.value, value[1]]);
@@ -48,7 +53,8 @@ export const ScorePicker: FunctionComponent<ScorePickerProps> = ({
                     hasError={hasError}
                     isDisabled={isDisabled}
                     label={label[1]}
-                    min={0}
+                    max={max}
+                    min={min}
                     name={`${name}-away`}
                     onChange={({ currentTarget }): void => {
                         onChange(name, [value[0], currentTarget.value]);

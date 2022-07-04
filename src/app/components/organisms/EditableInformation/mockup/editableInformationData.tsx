@@ -154,6 +154,8 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         component: EditableDataComponent.SCOREPICKER,
         isEditable: false,
         label: 'Score',
+        max: 456,
+        min: 0,
         name: 'Score',
         placeholder: ['home', 'away'],
         value: ['2', '0'],

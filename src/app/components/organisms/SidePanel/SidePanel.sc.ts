@@ -63,6 +63,38 @@ StyledSidePanel.defaultProps = {
     theme: themeBasic,
 };
 
-export const HeaderWrapper = styled.header`
-    position: relative;
+interface HeaderWrapperProps {
+    isModalSidePanel: boolean;
+    isSticky: boolean;
+}
+
+export const HeaderWrapper = styled.header<HeaderWrapperProps>`
+    position: ${({ isSticky }): string => (isSticky ? 'sticky' : 'relative')};
+
+    ${({ isModalSidePanel, isSticky }): SimpleInterpolation =>
+        isSticky &&
+        css`
+            top: 0;
+            z-index: ${isModalSidePanel ? zIndex.SIDEPANEL + 2 : zIndex.SIDEPANEL};
+        `}
 `;
+
+interface SubHeaderWrapperProps {
+    isModalSidePanel: boolean;
+    isSticky: boolean;
+}
+
+export const SubHeaderWrapper = styled.div<SubHeaderWrapperProps>`
+    position: ${({ isSticky }): string => (isSticky ? 'sticky' : 'relative')};
+
+    ${({ isModalSidePanel, isSticky, theme }): SimpleInterpolation =>
+        isSticky &&
+        css`
+            top: ${theme.spacing(6.5)};
+            z-index: ${isModalSidePanel ? zIndex.SIDEPANEL + 2 : zIndex.SIDEPANEL};
+        `}
+`;
+
+SubHeaderWrapper.defaultProps = {
+    theme: themeBasic,
+};

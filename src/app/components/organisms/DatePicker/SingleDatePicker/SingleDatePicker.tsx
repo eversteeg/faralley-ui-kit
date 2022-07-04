@@ -82,11 +82,11 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
     onConfirm,
     onDateChange,
     onFocusChange,
+    parentContainer,
     placeholder,
     variant = SingleDatePickerVariant.OUTLINE,
     yearCount = 100,
     yearCountFuture = 0,
-    parentContainer,
 }) => {
     const footerButtons: DialogFooterProps['buttons'] = [];
     const [isHovered, setIsHovered] = useState(false);

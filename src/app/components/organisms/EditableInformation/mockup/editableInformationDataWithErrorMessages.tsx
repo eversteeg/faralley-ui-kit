@@ -97,6 +97,8 @@ export const editableInformationDataWithErrorMessages = <T extends Fruit, U exte
         hasError: true,
         isEditable: true,
         label: 'Score',
+        max: 246,
+        min: 0,
         name: 'Score',
         placeholder: ['home', 'away'],
         value: ['2', '0'],

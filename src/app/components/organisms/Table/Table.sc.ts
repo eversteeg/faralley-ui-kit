@@ -1,4 +1,4 @@
-import { Alignment, Elevation } from '../../../types';
+import { Alignment, Elevation, zIndex } from '../../../types';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 import getAlignment from '../../../styles/mixins/getAlignment';
 import { getElevation } from '../../../styles/mixins/getElevation';
@@ -181,6 +181,10 @@ export const TableRow = styled.tr<TableRowProps>`
 
     &:hover td {
         ${getElevation(Elevation.LEVEL_3)}
+    }
+
+    &:hover {
+        z-index: ${zIndex.TABLEROW};
     }
 `;
 

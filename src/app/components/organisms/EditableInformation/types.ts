@@ -145,6 +145,8 @@ export interface ScorePickerDataProps extends BaseDataProps {
 }
 
 export interface EditableScorePickerDataProps extends ScorePickerDataProps {
+    max?: ScorePickerProps['max'];
+    min?: ScorePickerProps['min'];
     name: ScorePickerProps['name'];
     placeholder: ScorePickerProps['label'];
 }

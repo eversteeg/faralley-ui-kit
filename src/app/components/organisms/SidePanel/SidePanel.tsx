@@ -1,5 +1,5 @@
 import { Easing, SidePanelSize } from '../../../types';
-import { HeaderWrapper, StyledSidePanel } from './SidePanel.sc';
+import { HeaderWrapper, StyledSidePanel, SubHeaderWrapper } from './SidePanel.sc';
 import React, { FunctionComponent, ReactNode } from 'react';
 import { ButtonIconProps } from '../../molecules/ButtonIcon/ButtonIcon';
 import Header from '../../molecules/Header/Header';
@@ -10,9 +10,11 @@ export interface SidePanelProps {
     children?: ReactNode;
     className?: string;
     isModalSidePanel?: boolean; // When used within a modal, then z-index needs to be handled correctly
+    isSticky?: boolean;
     isVisible: boolean;
     options?: ReactNode;
     size?: SidePanelSize;
+    subHeader?: ReactNode;
     title: ReactNode;
     transitionDuration?: number;
     transitionEasing?: Easing;
@@ -23,9 +25,11 @@ export const SidePanel: FunctionComponent<SidePanelProps> = ({
     children,
     className,
     isModalSidePanel = false,
+    isSticky = true,
     isVisible = false,
     options,
     size = SidePanelSize.MEDIUM,
+    subHeader,
     title,
     transitionDuration = 300,
     transitionEasing = Easing.EASE,
@@ -40,11 +44,16 @@ export const SidePanel: FunctionComponent<SidePanelProps> = ({
             transitionDuration={transitionDuration}
             transitionEasing={transitionEasing}
         >
-            <HeaderWrapper>
+            <HeaderWrapper isModalSidePanel={isModalSidePanel} isSticky={isSticky}>
                 <Header buttons={buttons} isInverted title={title}>
                     {options}
                 </Header>
             </HeaderWrapper>
+            {subHeader && (
+                <SubHeaderWrapper isModalSidePanel={isModalSidePanel} isSticky={isSticky}>
+                    {subHeader}
+                </SubHeaderWrapper>
+            )}
             {children}
         </StyledSidePanel>
     </>

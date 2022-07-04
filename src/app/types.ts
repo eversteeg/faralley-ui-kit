@@ -653,6 +653,9 @@ export interface Theme {
         primary: string;
         secondary: string;
     };
+    overlay: {
+        backgroundColor: string;
+    };
     table: {
         footer: {
             backgroundColor: string;
@@ -700,5 +703,6 @@ export enum zIndex {
     MODAL = 9996, // Uses 2 layers down. Needs at least -3 from DIALOG, because DIALOG uses 3 layers
     OVERLAY = 10,
     SIDEPANEL = 9997, // It's possible to have a sidepanel in a modal, so this needs to be at least +1 to modal
+    TABLEROW = 2,
     TOOLTIP = 99999999,
 }
