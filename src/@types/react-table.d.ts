@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { Alignment, Locale } from '../lib';
+import { Alignment, Locale, TableColumnActionButtonProps } from '../lib';
 import {
     UseExpandedInstanceProps,
     UseExpandedOptions,
@@ -69,6 +69,7 @@ declare module 'react-table' {
             UseGroupByColumnOptions<D>,
             UseResizeColumnsColumnOptions<D>,
             UseSortByColumnOptions<D> {
+        actionButtons?: (row: Row<D>) => TableColumnActionButtonProps<D>[];
         align?: Alignment;
         hasCellPadding?: boolean;
         isCurrency?: boolean;

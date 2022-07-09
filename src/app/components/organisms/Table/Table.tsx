@@ -6,6 +6,7 @@
 // Documentation: https://react-table.tanstack.com/docs/overview
 
 import { Alignment, Elevation, IconType } from '../../../types';
+import Button, { ButtonProps } from '../../molecules/Button/Button';
 import {
     FooterWrapper,
     PaginatorWrapper,
@@ -58,6 +59,11 @@ export interface TableProps<T extends object> {
     texts?: TableTexts;
 }
 
+export interface TableColumnActionButtonProps<T extends object> extends ButtonProps {
+    isRowAction?: boolean;
+    onClickAction?: (event: SyntheticEvent, row?: Row<T>, tableState?: TableState<T>) => void;
+}
+
 const dataSource = <T extends object>(instance: TableInstance<T>, hasPaging: boolean): Row<T>[] =>
     hasPaging ? instance.page : instance.rows;
 
@@ -80,6 +86,7 @@ export const Table = <T extends object>({
     const { footerGroups, getTableBodyProps, getTableProps, headerGroups, prepareRow } = instance;
     const [availableTableWidth, setAvailableTableWidth] = useState(0);
     const [locale, setLocale] = useState(instance.initialState?.locale);
+    const [datasourceInstance, setDatasourceInstance] = useState<Row<T>[]>([]);
     const tableWrapperRef = useRef<HTMLDivElement>(null);
     let hasFooterColumns = false;
 
@@ -106,6 +113,10 @@ export const Table = <T extends object>({
         [instance]
     );
 
+    useEffect(() => {
+        setDatasourceInstance(dataSource(instance, Boolean(paginator)));
+    }, [instance, paginator]);
+
     // (re)set the locale on change
     useEffect(() => {
         setLocale(instance.initialState?.locale);
@@ -124,6 +135,23 @@ export const Table = <T extends object>({
             );
         }
     }, [availableTableWidth, tableWrapperRef, fixedColumnWidthsTotal]);
+
+    const onClickTableRow = (
+        event: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
+        row: Row<T>,
+        tableState: TableState<T>,
+        actionButtonProps: TableColumnActionButtonProps<T> | undefined
+    ) => {
+        // The Default Action button will be override the Table onClickRow, if there is no onClickRow provided
+        if (onClickRow) {
+            onClickRow(event, row, tableState);
+        } else if (
+            (actionButtonProps?.isRowAction === undefined || actionButtonProps?.isRowAction) &&
+            actionButtonProps?.onClickAction
+        ) {
+            actionButtonProps?.onClickAction(event, row, tableState);
+        }
+    };
 
     return (
         <>
@@ -181,23 +209,31 @@ export const Table = <T extends object>({
                         </TableHead>
                         <TableBody elevation={elevation} {...getTableBodyProps()}>
                             {/* USE A CONST (SEE TOP OF FILE) TO DETERMINE CORRECT DATA SOURCE FOR READING (PAGE OR ROWS) */}
-                            {dataSource(instance, Boolean(paginator)).map((row, index) => {
+                            {datasourceInstance.map((row, index) => {
                                 prepareRow(row);
+                                const actionButtonCell = row.cells.find(({ column }) => column?.actionButtons);
+                                let actionButtonProps: TableColumnActionButtonProps<T> | undefined;
+
+                                if (actionButtonCell?.column && actionButtonCell?.column?.actionButtons) {
+                                    actionButtonProps = actionButtonCell?.column?.actionButtons(row).shift();
+                                }
 
                                 return (
                                     <TableRow
                                         id={`TableRow_${index}`}
-                                        isClickable={!row.isDisabled && Boolean(onClickRow)}
-                                        onClick={
-                                            onClickRow
-                                                ? (event: SyntheticEvent): void => {
-                                                      onClickRow(event, row, instance.state);
-                                                  }
-                                                : undefined
+                                        isClickable={
+                                            (!row.isDisabled && Boolean(onClickRow)) ||
+                                            ((actionButtonProps?.isRowAction === undefined ||
+                                                actionButtonProps?.isRowAction) &&
+                                                Boolean(actionButtonProps?.onClickAction))
+                                        }
+                                        onClick={(event) =>
+                                            onClickTableRow(event, row, instance.state, actionButtonProps)
                                         }
                                         {...row.getRowProps()}
                                     >
                                         {row.cells
+                                            // .sort((cell) => (cell?.column?.actionButtons ? 1 : -1))
                                             .filter(({ column }) => column.isVisible)
                                             .map((cell, cellIndex) => {
                                                 // Check if we need to do some looping for the footer based on aggregate setting
@@ -232,25 +268,49 @@ export const Table = <T extends object>({
                                                             align={cell.column.align || Alignment.LEFT}
                                                             id={`TableCellContent_${cellIndex}`}
                                                         >
-                                                            {cell.isGrouped ? (
-                                                                // If it's a grouped cell, add an expander and row count
-                                                                <>
-                                                                    <span {...row.getToggleRowExpandedProps()}>
-                                                                        {row.isExpanded
-                                                                            ? IconType.ARROWDOWN
-                                                                            : IconType.ARROWRIGHT}
-                                                                    </span>{' '}
-                                                                    {cell.render('Cell', {
-                                                                        editable: false,
-                                                                    })}
-                                                                </>
-                                                            ) : cell.isAggregated ? (
-                                                                // If the cell is aggregated, use the Aggregated
-                                                                // renderer for cell
-                                                                cell.render('Aggregated')
-                                                            ) : cell.isPlaceholder ? null : ( // For cells with repeated values, render null
-                                                                // Otherwise, just render the regular cell
-                                                                cell.render('Cell', { editable: true })
+                                                            {!cell.column?.actionButtons ? (
+                                                                cell.isGrouped ? (
+                                                                    // If it's a grouped cell, add an expander and row count
+                                                                    <>
+                                                                        <span {...row.getToggleRowExpandedProps()}>
+                                                                            {row.isExpanded
+                                                                                ? IconType.ARROWDOWN
+                                                                                : IconType.ARROWRIGHT}
+                                                                        </span>{' '}
+                                                                        {cell.render('Cell', {
+                                                                            editable: false,
+                                                                        })}
+                                                                    </>
+                                                                ) : cell.isAggregated ? (
+                                                                    // If the cell is aggregated, use the Aggregated
+                                                                    // renderer for cell
+                                                                    cell.render('Aggregated')
+                                                                ) : cell.isPlaceholder ? null : ( // For cells with repeated values, render null
+                                                                    // Otherwise, just render the regular cell
+                                                                    cell.render('Cell', { editable: true })
+                                                                )
+                                                            ) : (
+                                                                cell.column
+                                                                    .actionButtons(row)
+                                                                    ?.map((buttonProps, propIndex) => {
+                                                                        const { onClickAction, ...restButtonProps } =
+                                                                            buttonProps;
+
+                                                                        return (
+                                                                            <Button
+                                                                                // eslint-disable-next-line react/no-array-index-key
+                                                                                key={propIndex}
+                                                                                onClick={(event) =>
+                                                                                    onClickAction?.(
+                                                                                        event,
+                                                                                        row,
+                                                                                        instance.state
+                                                                                    )
+                                                                                }
+                                                                                {...restButtonProps}
+                                                                            />
+                                                                        );
+                                                                    })
                                                             )}
                                                         </TableCellContent>
                                                     </TableCell>

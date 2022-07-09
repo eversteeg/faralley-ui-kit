@@ -234,7 +234,7 @@ export {
 export { Paginator, PaginatorProps, PaginatorTexts } from '../app/components/organisms/Table/Paginator/Paginator';
 export { SidePanel, SidePanelProps } from '../app/components/organisms/SidePanel/SidePanel';
 export { StatusCell, StatusCellProps } from '../app/components/organisms/Table/StatusCell/StatusCell';
-export { Table, TableProps, TableTexts } from '../app/components/organisms/Table/Table';
+export { Table, TableProps, TableTexts, TableColumnActionButtonProps } from '../app/components/organisms/Table/Table';
 export { TableSkeleton, TableSkeletonProps } from '../app/components/organisms/Table/TableSkeleton/TableSkeleton';
 export { ToggleCheckbox, ToggleCheckboxProps } from '../app/components/organisms/ToggleCheckbox/ToggleCheckbox';
 export { Tab, Tabs, TabsProps, TabHeaders, TabPanel } from '../app/components/organisms/Tabs';

@@ -8,6 +8,7 @@ import { getTableCell } from './tableFunctions';
 import { Icon } from '../../../atoms/Icon/Icon';
 import { StatusCell } from '../StatusCell/StatusCell';
 import { sum } from '../utils/aggregateFunctions';
+import { TableColumnActionButtonProps } from '../Table';
 import { TableData } from './tableData';
 
 const getStatusIcon = (status: Status): IconType => {
@@ -242,5 +243,75 @@ export const tableColumnsPicklistMultiSelect = (): Column<TableData>[] => [
         Header: 'Infix',
         accessor: 'infix',
         width: 75.5,
+    },
+];
+
+export const tableColumnsWithActionButtons = (
+    isVisible: boolean,
+    setIsVisible: (isVisible: boolean) => void
+): Column<TableData>[] => [
+    {
+        Cell: ({ value }): ReactNode => <ContentCell value={value} />,
+        Header: 'First Name',
+        accessor: 'firstName',
+        width: '25%',
+    },
+    {
+        Cell: ({ value }): ReactNode => <ContentCell isBold value={value} />,
+        Header: 'Last Name',
+        accessor: 'lastName',
+        width: '30%',
+    },
+    {
+        Cell: ({ value }): ReactNode => <ContentCell value={value} />,
+        Header: 'Infix',
+        accessor: 'infix',
+        width: '20%',
+    },
+    {
+        Cell: (): ReactNode => <ContentCell value={''} />,
+        Header: 'RelationCode',
+        disableSortBy: true,
+        width: '10%',
+    },
+    {
+        Cell: ({ row }): ReactNode => <ContentCell value={row.original.id} />,
+        accessor: 'id',
+        actionButtons: (row) => {
+            const buttonProps: TableColumnActionButtonProps<TableData>[] = [];
+
+            if (row.original.id !== '1') {
+                buttonProps.push({
+                    children: 'Delete',
+                    iconType: IconType.TRASHCAN,
+                    onClickAction: (event) => {
+                        event.stopPropagation();
+                        // eslint-disable-next-line no-alert
+                        alert(`On click Delete`);
+                        // eslint-disable-next-line no-console
+                        console.log('row', row);
+                        setIsVisible(!isVisible);
+                    },
+                    size: ButtonSize.SMALL,
+                    variant: ButtonVariant.TEXT_ONLY,
+                });
+            }
+
+            buttonProps.push({
+                children: 'Edit',
+                iconType: IconType.PENCIL,
+                isRowAction: false,
+                onClickAction: (event) => {
+                    event.stopPropagation();
+                    // eslint-disable-next-line no-alert
+                    alert(`On click Edit`);
+                },
+                size: ButtonSize.SMALL,
+                variant: ButtonVariant.TEXT_ONLY,
+            });
+
+            return buttonProps;
+        },
+        width: 150,
     },
 ];

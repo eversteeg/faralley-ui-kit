@@ -8,14 +8,16 @@ import {
 import { Elevation, IconType, Locale } from '../../../types';
 import { getSelectedRowIds, getSelectedRows } from './utils/tableFunctions';
 import React, { FunctionComponent, useMemo, useState } from 'react';
-import { tableColumns, tableColumnsWithGroupHeader } from './mockup/tableColumns';
+import { tableColumns, tableColumnsWithActionButtons, tableColumnsWithGroupHeader } from './mockup/tableColumns';
 import { tableData, TableData } from './mockup/tableData';
+import { action } from '@storybook/addon-actions';
 import CardNoResults from '../../molecules/CardNoResults/CardNoResults';
 import { createTable } from '../../../utils/functions/createTable';
 import { DEFAULT_LOCALE } from '../../../../global/constants';
 import notes from './notes.md';
 import Paginator from './Paginator/Paginator';
 import SelectionControl from '../../molecules/SelectionControl/SelectionControl';
+import SidePanel from '../SidePanel/SidePanel';
 import { Table } from './Table';
 
 export default {
@@ -283,6 +285,73 @@ export const ConfigurableMultiSelectTableLimitedSelect: FunctionComponent = () =
                     )}
                 </code>
             </pre>
+        </>
+    ) : (
+        <div>{'Loading...'}</div>
+    );
+};
+
+export const ConfigurableActionButtonsTable: FunctionComponent = () => {
+    const localizedTexts = createLocalizedTableTexts(DEFAULT_LOCALE);
+    const [isVisible, setIsVisible] = useState(false);
+
+    const columns = useMemo(() => tableColumnsWithActionButtons(isVisible, setIsVisible), []);
+    const data = useMemo(() => tableData(), []);
+
+    const instance = createTable<TableData>(
+        columns,
+        data,
+        {
+            sortBy: [
+                {
+                    desc: false,
+                    id: 'lastName',
+                },
+                {
+                    desc: false,
+                    id: 'firstName',
+                },
+            ],
+        },
+        {
+            width: 100,
+        },
+        Locale.NL
+    );
+
+    const onBack = (): void => {
+        action('On back');
+        setIsVisible(false);
+    };
+
+    return instance ? (
+        <>
+            <SidePanel
+                buttons={[
+                    {
+                        iconType: IconType.CROSS,
+                        onClick: onBack,
+                    },
+                ]}
+                isVisible={isVisible}
+                title={text('Header title', 'Heading')}
+            >
+                {text('Body', 'Some body text')}
+            </SidePanel>
+            <Table<TableData>
+                caption={text('Table caption', 'Table caption')}
+                elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
+                footerTitleColumnSpan={number('Number of columns for first footer text', 2)}
+                hasUnsortedStateIcon={boolean('Has unsorted state icon', true)}
+                instance={instance}
+                isDisabled={boolean('Is disabled', false)}
+                isFullWidth={boolean('Is full width', true)}
+                noResults={text('No result message', 'No results found')}
+                paginator={
+                    <Paginator<TableData> instance={instance} texts={createLocalizedPagingTexts(DEFAULT_LOCALE)} />
+                }
+                texts={{ sortByTooltip: localizedTexts.sortByTooltip }}
+            />
         </>
     ) : (
         <div>{'Loading...'}</div>

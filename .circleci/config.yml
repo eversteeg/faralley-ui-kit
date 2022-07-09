@@ -30,7 +30,7 @@ jobs:
             - *restore_dependencies
             - run:
                 name: Install dependencies
-                command: npm install --legacy-peer-deps
+                command: npm install
             - save_cache:
                 key: dependency-cache-{{ checksum "package.json" }}
                 paths:
