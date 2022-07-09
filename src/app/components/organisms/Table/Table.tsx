@@ -6,7 +6,7 @@
 // Documentation: https://react-table.tanstack.com/docs/overview
 
 import { Alignment, Elevation, IconType } from '../../../types';
-import Button, { ButtonProps } from '../../molecules/Button/Button';
+import ButtonIcon, { ButtonIconProps } from '../../molecules/ButtonIcon/ButtonIcon';
 import {
     FooterWrapper,
     PaginatorWrapper,
@@ -59,7 +59,7 @@ export interface TableProps<T extends object> {
     texts?: TableTexts;
 }
 
-export interface TableColumnActionButtonProps<T extends object> extends ButtonProps {
+export interface TableColumnActionButtonProps<T extends object> extends ButtonIconProps {
     isRowAction?: boolean;
     onClickAction?: (event: SyntheticEvent, row?: Row<T>, tableState?: TableState<T>) => void;
 }
@@ -297,7 +297,7 @@ export const Table = <T extends object>({
                                                                             buttonProps;
 
                                                                         return (
-                                                                            <Button
+                                                                            <ButtonIcon
                                                                                 // eslint-disable-next-line react/no-array-index-key
                                                                                 key={propIndex}
                                                                                 onClick={(event) =>

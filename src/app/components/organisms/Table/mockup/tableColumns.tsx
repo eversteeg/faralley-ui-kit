@@ -282,7 +282,6 @@ export const tableColumnsWithActionButtons = (
 
             if (row.original.id !== '1') {
                 buttonProps.push({
-                    children: 'Delete',
                     iconType: IconType.TRASHCAN,
                     onClickAction: (event) => {
                         event.stopPropagation();
@@ -292,13 +291,10 @@ export const tableColumnsWithActionButtons = (
                         console.log('row', row);
                         setIsVisible(!isVisible);
                     },
-                    size: ButtonSize.SMALL,
-                    variant: ButtonVariant.TEXT_ONLY,
                 });
             }
 
             buttonProps.push({
-                children: 'Edit',
                 iconType: IconType.PENCIL,
                 isRowAction: false,
                 onClickAction: (event) => {
@@ -306,8 +302,6 @@ export const tableColumnsWithActionButtons = (
                     // eslint-disable-next-line no-alert
                     alert(`On click Edit`);
                 },
-                size: ButtonSize.SMALL,
-                variant: ButtonVariant.TEXT_ONLY,
             });
 
             return buttonProps;
