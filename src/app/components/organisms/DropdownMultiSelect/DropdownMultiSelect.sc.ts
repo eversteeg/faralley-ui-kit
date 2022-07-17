@@ -20,6 +20,7 @@ interface ListWrapperProps {
     variant?: DropdownVariant;
 }
 
+/* club 2370 z index can be recorrect for dialogue */
 export const ListWrapper = styled.div<ListWrapperProps>`
     ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
     ${({ isTopDropdown, variant, theme }): SimpleInterpolation =>
@@ -29,7 +30,7 @@ export const ListWrapper = styled.div<ListWrapperProps>`
             margin-bottom: 5px;
         `}
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     margin: ${({ theme }): string => theme.spacing(1, 0, 0, 0)};
     border-radius: ${({ theme }): string => theme.spacing(1)};
     background-color: ${({ theme }): string => theme.shades.nine};

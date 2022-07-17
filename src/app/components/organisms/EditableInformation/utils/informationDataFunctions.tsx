@@ -95,7 +95,7 @@ export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, 
     }
 
     if (component === EditableDataComponent.DROPDOWNMULTISELECT && Array.isArray(value)) {
-        return getSelectedText(value as U[], 'label');
+        return getSelectedText(value, 'label');
     }
 
     if (component === EditableDataComponent.DATEPICKER && moment.isMoment(value)) {
@@ -107,15 +107,15 @@ export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, 
     }
 
     if (component === EditableDataComponent.INPUTCURRENCY && value) {
-        return convertToLocaleValue((value as string) || '', localeCurrency || locale);
+        return convertToLocaleValue(value || '', localeCurrency || locale);
     }
 
     if (component === EditableDataComponent.SCOREPICKER && Array.isArray(value)) {
-        return `${value[0] as string} - ${value[1] as string}`;
+        return `${value[0]} - ${value[1]}`;
     }
 
     if (component === EditableDataComponent.TIMEPICKER && Array.isArray(value)) {
-        return value[0] && value[1] ? `${value[0] as string}:${value[1] as string}` : '-';
+        return value[0] && value[1] ? `${value[0]}:${value[1]}` : '-';
     }
 
     return textValue || value;

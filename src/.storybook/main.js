@@ -5,5 +5,8 @@ module.exports = {
         '@storybook/addon-backgrounds',
         'storybook-addon-styled-component-theme/dist/',
     ],
+    core: {
+        builder: 'webpack5',
+    },
     stories: ['../**/*.stories.tsx'],
 };
