@@ -81,62 +81,172 @@ export const StyledButton = styled.button<StyledButtonProps>`
         `}
 
     ${({ isDisabled, isInverted, theme: { button }, variant }): SimpleInterpolation =>
-        variant === ButtonVariant.FILLED &&
+        variant === ButtonVariant.DANGER &&
         css`
-            border-color: ${isInverted
-                ? button.filled.backgroundColor.inverted
-                : button.filled.backgroundColor.primary};
+            border-color: ${isInverted ? button.danger.border.inverted : button.danger.border.primary};
             background-color: ${isInverted
-                ? button.filled.backgroundColor.inverted
-                : button.filled.backgroundColor.primary};
-            color: ${isInverted ? button.filled.color.inverted : button.filled.color.primary};
+                ? button.danger.backgroundColor.inverted
+                : button.danger.backgroundColor.primary};
+            color: ${isInverted ? button.danger.color.inverted : button.danger.color.primary};
 
             ${!isDisabled &&
             css`
-                &:focus,
                 &:hover {
-                    border-color: ${isInverted
-                        ? button.filled.backgroundColor.hoverInverted
-                        : button.filled.backgroundColor.hover};
+                    border-color: ${isInverted ? button.danger.border.hoverInverted : button.danger.border.hover};
                     background-color: ${isInverted
-                        ? button.filled.backgroundColor.hoverInverted
-                        : button.filled.backgroundColor.hover};
-                    color: ${isInverted ? button.filled.color.hoverInverted : button.filled.color.hover};
+                        ? button.danger.backgroundColor.hoverInverted
+                        : button.danger.backgroundColor.hover};
+                    color: ${isInverted ? button.danger.color.hoverInverted : button.danger.color.hover};
+                }
+            `}
+
+            ${!isDisabled &&
+            css`
+                &:focus {
+                    border-color: ${isInverted ? button.danger.border.focusInverted : button.danger.border.focus};
+                    background-color: ${isInverted
+                        ? button.danger.backgroundColor.focusInverted
+                        : button.danger.backgroundColor.focus};
                 }
             `}
 
             ${isDisabled &&
             css`
-                border-color: ${isInverted ? button.filled.color.disabled : button.filled.backgroundColor.disabled};
-                background-color: ${isInverted ? button.filled.color.disabled : button.filled.backgroundColor.disabled};
-                color: ${isInverted ? button.filled.backgroundColor.disabled : button.filled.color.disabled};
+                border-color: ${isInverted ? button.danger.color.disabled : button.danger.backgroundColor.disabled};
+                background-color: ${isInverted ? button.danger.color.disabled : button.danger.backgroundColor.disabled};
+                color: ${isInverted ? button.danger.backgroundColor.disabled : button.danger.color.disabled};
             `}
         `}
 
     ${({ isDisabled, isInverted, theme: { button }, variant }): SimpleInterpolation =>
-        variant === ButtonVariant.OUTLINE &&
+        variant === ButtonVariant.PRIMARY &&
         css`
-            border-color: ${isInverted
-                ? button.outline.backgroundColor.inverted
-                : button.outline.backgroundColor.primary};
-            background-color: transparent !important;
-            color: ${isInverted ? button.outline.color.inverted : button.outline.color.primary};
+            border-color: ${isInverted ? button.primary.border.inverted : button.primary.border.primary};
+            background-color: ${isInverted
+                ? button.primary.backgroundColor.inverted
+                : button.primary.backgroundColor.primary};
+            color: ${isInverted ? button.primary.color.inverted : button.primary.color.primary};
 
             ${!isDisabled &&
             css`
-                &:focus,
                 &:hover {
-                    border-color: ${isInverted
-                        ? button.outline.backgroundColor.hoverInverted
-                        : button.outline.backgroundColor.hover};
-                    color: ${isInverted ? button.outline.color.hoverInverted : button.outline.color.hover};
+                    border-color: ${isInverted ? button.primary.border.hoverInverted : button.primary.border.hover};
+                    background-color: ${isInverted
+                        ? button.primary.backgroundColor.hoverInverted
+                        : button.primary.backgroundColor.hover};
+                    color: ${isInverted ? button.primary.color.hoverInverted : button.primary.color.hover};
+                }
+            `}
+
+            ${!isDisabled &&
+            css`
+                &:focus {
+                    border-color: ${isInverted ? button.primary.border.focusInverted : button.primary.border.focus};
+                    background-color: ${isInverted
+                        ? button.primary.backgroundColor.focusInverted
+                        : button.primary.backgroundColor.focus};
                 }
             `}
 
             ${isDisabled &&
             css`
-                border-color: ${isInverted ? button.outline.color.disabled : button.outline.backgroundColor.disabled};
-                color: ${isInverted ? button.outline.backgroundColor.disabled : button.outline.color.disabled};
+                border-color: ${isInverted ? button.primary.color.disabled : button.primary.backgroundColor.disabled};
+                background-color: ${isInverted
+                    ? button.primary.color.disabled
+                    : button.primary.backgroundColor.disabled};
+                color: ${isInverted ? button.primary.backgroundColor.disabled : button.primary.color.disabled};
+            `}
+        `}
+
+    ${({ isDisabled, isInverted, theme: { button }, variant }): SimpleInterpolation =>
+        variant === ButtonVariant.SECONDARY &&
+        css`
+            border-color: ${isInverted ? button.secondary.border.inverted : button.secondary.border.primary};
+            background-color: ${isInverted
+                ? button.secondary.backgroundColor.inverted
+                : button.secondary.backgroundColor.primary};
+            color: ${isInverted ? button.secondary.color.inverted : button.secondary.color.primary};
+
+            ${!isDisabled &&
+            css`
+                &:hover {
+                    border-color: ${isInverted ? button.secondary.border.hoverInverted : button.secondary.border.hover};
+                    background-color: ${isInverted
+                        ? button.secondary.backgroundColor.hoverInverted
+                        : button.secondary.backgroundColor.hover};
+                    color: ${isInverted ? button.secondary.color.hoverInverted : button.secondary.color.hover};
+                }
+            `}
+
+            ${!isDisabled &&
+            css`
+                &:focus {
+                    border-color: ${isInverted ? button.secondary.border.focusInverted : button.secondary.border.focus};
+                    background-color: ${isInverted
+                        ? button.secondary.backgroundColor.focusInverted
+                        : button.secondary.backgroundColor.focus};
+                }
+            `}
+
+            ${isDisabled &&
+            css`
+                border-color: ${isInverted
+                    ? button.secondary.color.disabled
+                    : button.secondary.backgroundColor.disabled};
+                background-color: ${isInverted
+                    ? button.secondary.color.disabled
+                    : button.secondary.backgroundColor.disabled};
+                color: ${isInverted ? button.secondary.backgroundColor.disabled : button.secondary.color.disabled};
+            `}
+        `}
+
+    ${({ isDisabled, isInverted, theme: { button }, variant }): SimpleInterpolation =>
+        variant === ButtonVariant.SECONDARYLIGHT &&
+        css`
+            border-color: ${isInverted ? button.secondaryLight.border.inverted : button.secondaryLight.border.primary};
+            background-color: ${isInverted
+                ? button.secondaryLight.backgroundColor.inverted
+                : button.secondaryLight.backgroundColor.primary};
+            color: ${isInverted ? button.secondaryLight.color.inverted : button.secondaryLight.color.primary};
+
+            ${!isDisabled &&
+            css`
+                &:hover {
+                    border-color: ${isInverted
+                        ? button.secondaryLight.border.hoverInverted
+                        : button.secondaryLight.border.hover};
+                    background-color: ${isInverted
+                        ? button.secondaryLight.backgroundColor.hoverInverted
+                        : button.secondaryLight.backgroundColor.hover};
+                    color: ${isInverted
+                        ? button.secondaryLight.color.hoverInverted
+                        : button.secondaryLight.color.hover};
+                }
+            `}
+
+            ${!isDisabled &&
+            css`
+                &:focus {
+                    border-color: ${isInverted
+                        ? button.secondaryLight.border.focusInverted
+                        : button.secondaryLight.border.focus};
+                    background-color: ${isInverted
+                        ? button.secondaryLight.backgroundColor.focusInverted
+                        : button.secondaryLight.backgroundColor.focus};
+                }
+            `}
+
+            ${isDisabled &&
+            css`
+                border-color: ${isInverted
+                    ? button.secondaryLight.color.disabled
+                    : button.secondaryLight.color.disabled};
+                background-color: ${isInverted
+                    ? button.secondaryLight.color.disabled
+                    : button.secondaryLight.backgroundColor.disabled};
+                color: ${isInverted
+                    ? button.secondaryLight.backgroundColor.disabled
+                    : button.secondaryLight.color.disabled};
             `}
         `}
 
@@ -175,7 +285,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
         ${({ variant, theme: { button } }): SimpleInterpolation =>
             variant !== ButtonVariant.TEXT_ONLY &&
             rippleEffect(
-                variant === ButtonVariant.FILLED ? button.filled.color.primary : button.outline.backgroundColor.primary
+                variant === ButtonVariant.PRIMARY
+                    ? button.primary.color.primary
+                    : button.secondary.backgroundColor.primary
             )}
     }
 

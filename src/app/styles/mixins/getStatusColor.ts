@@ -1,6 +1,10 @@
 import { Status, Theme } from '../../types';
 
-export const getStatusColor = (status: Status, theme: Theme): string => {
+export enum StatusComponents {
+    TABLE = 'TABLE',
+}
+
+export const getStatusColor = (status: Status, theme: Theme, componentName?: StatusComponents): string => {
     switch (status) {
         case Status.NONE:
             return theme.shades.six;
@@ -12,6 +16,10 @@ export const getStatusColor = (status: Status, theme: Theme): string => {
             return theme.colorPrimary;
 
         case Status.DISABLED:
+            if (componentName && componentName === StatusComponents.TABLE) {
+                return theme.colorInactive;
+            }
+
             return theme.colorDisabled;
 
         case Status.INVALID:

@@ -32,7 +32,7 @@ export const ConfigurableWithoutOnClick: FunctionComponent = () => (
 export const ConfigurableWithIcon: FunctionComponent = () => (
     <Chip
         direction={select('Direction', Direction, Direction.LTR)}
-        iconSize={select('Icon size', IconSize, IconSize.MEDIUM)}
+        iconSize={select('Icon size', IconSize, IconSize.SMALL)}
         iconType={select('Type', IconType, IconType.CHECK)}
         isDisabled={boolean('Is disabled', false)}
         isSelected={boolean('Is selected', true)}

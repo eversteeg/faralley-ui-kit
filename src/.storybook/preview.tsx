@@ -8,6 +8,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
 import { addDecorator, addParameters } from '@storybook/react';
 import { boolean, select, withKnobs } from '@storybook/addon-knobs';
+import { ConfigProvider } from '../app/context/Config';
 import moment from 'moment';
 import React from 'react';
 import { themeBasic } from '../app/styles/theming/themes/basic';
@@ -30,7 +31,7 @@ addDecorator((storyFn) => (
         isTransparent={boolean('Wrapper is transparent', false)}
         width={select<WrapperWidth>('Wrapper width', WrapperWidth, WrapperWidth.LARGE)}
     >
-        {storyFn()}
+        <ConfigProvider>{storyFn()}</ConfigProvider>
     </Wrapper>
 ));
 

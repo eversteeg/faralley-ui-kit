@@ -47,7 +47,7 @@ export const ConfigurableSidePanel: FunctionComponent = () => {
                     action('On back');
                     setIsVisible(true);
                 }}
-                variant={ButtonVariant.FILLED}
+                variant={ButtonVariant.PRIMARY}
             >
                 {isVisible ? 'SIDE PANEL IS SHOWING' : 'SHOW SIDE PANEL'}
             </Button>
@@ -90,7 +90,7 @@ export const ConfigurableSidePanel: FunctionComponent = () => {
                         setHasSubheader(!hasSubheader);
                     }}
                     size={ButtonSize.SMALL}
-                    variant={ButtonVariant.FILLED}
+                    variant={ButtonVariant.PRIMARY}
                 >
                     {hasSubheader ? 'Hide Subheader' : 'Show Subheader'}
                 </Button>

@@ -159,7 +159,7 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
                                     : onAddToSelectionCallback
                             }
                             size={ButtonSize.SMALL}
-                            variant={ButtonVariant.OUTLINE}
+                            variant={ButtonVariant.SECONDARY}
                         >
                             {addButtonText}
                         </Button>
@@ -209,7 +209,7 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
                                     : onRemoveFromSelectionCallback
                             }
                             size={ButtonSize.SMALL}
-                            variant={ButtonVariant.OUTLINE}
+                            variant={ButtonVariant.DANGER}
                         >
                             {removeButtonText}
                         </Button>

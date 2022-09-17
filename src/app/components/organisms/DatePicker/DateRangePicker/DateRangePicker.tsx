@@ -7,15 +7,16 @@ import {
 } from 'react-dates';
 import { ButtonSize, ButtonVariant, IconType } from '../../../../types';
 import DialogFooter, { DialogFooterProps } from '../../../molecules/DialogFooter/DialogFooter';
+import moment, { Moment } from 'moment';
 import React, { FunctionComponent, MouseEventHandler, ReactNode, useContext, useEffect, useRef, useState } from 'react';
 import { Shortcut, Shortcuts } from './Shortcuts/Shortcuts';
 import { StyledDateRangePicker, StyledWrapper } from './DateRangePicker.sc';
 import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
 import FormElementLabel from '../../../molecules/FormElementLabel/FormElementLabel';
 import InputIcon from '../InputIcon/InputIcon';
-import { Moment } from 'moment';
 import Navigation from '../Navigation/Navigation';
 import { ThemeContext } from 'styled-components';
+import { useConfigContext } from '../../../../context/Config';
 import Wrapper from '../Wrapper/Wrapper';
 
 export interface DateRangePickerProps {
@@ -105,6 +106,7 @@ export const DateRangePicker: FunctionComponent<DateRangePickerProps> = ({
     const [openDatePickerMinHeight, setOpenDatePickerMinHeight] = useState(400);
     const [openDatePickerMinWidth, setOpenDatePickerMinWidth] = useState(350);
     const [openDirection, setOpenDirection] = useState<OpenDirectionShape>('down');
+    const { configuration } = useConfigContext();
 
     if (onCancel) {
         footerButtons.push({
@@ -205,7 +207,7 @@ export const DateRangePicker: FunctionComponent<DateRangePickerProps> = ({
                         daySize={daySize}
                         disabled={isDisabled}
                         displayFormat={displayFormat}
-                        endDate={endDate}
+                        endDate={moment(endDate).locale(configuration.locale)}
                         endDateId={endDateId}
                         endDatePlaceholderText={endDatePlaceholderText}
                         focusedInput={focusedInput}
@@ -233,11 +235,12 @@ export const DateRangePicker: FunctionComponent<DateRangePickerProps> = ({
                                 hasYearSelector={hasYearSelector}
                                 labelMonth={labelMonth}
                                 labelYear={labelYear}
+                                month={moment(props.month).locale(configuration.locale)}
                                 yearCount={yearCount}
                                 yearCountFuture={yearCountFuture}
                             />
                         )}
-                        startDate={startDate}
+                        startDate={moment(startDate).locale(configuration.locale)}
                         startDateId={startDateId}
                         startDatePlaceholderText={startDatePlaceholderText}
                         verticalSpacing={spacingValue * 6 - 40}

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { IconSize, IconType } from '../../../../types';
+import { Direction, IconSize, IconType } from '../../../../types';
 import { IconWrapper, Inner, StyledItem, TextWrapper } from './Item.sc';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import { IconCustomizable } from '../../../molecules/IconCustomizable/IconCustomizable';
@@ -11,6 +11,7 @@ interface ItemsProps {
     children?: ReactNode;
     hasChildren?: boolean;
     iconType?: IconType;
+    isChildMenuItem?: boolean;
     isDisabled?: boolean;
     isOpen?: boolean;
     isParent?: boolean;
@@ -24,6 +25,7 @@ const Item: FunctionComponent<ItemsProps> = ({
     hasChildren = false,
     iconType = undefined,
     isDisabled = false,
+    isChildMenuItem = false,
     isVisible = true,
     isOpen = false,
     isParent = false,
@@ -35,7 +37,13 @@ const Item: FunctionComponent<ItemsProps> = ({
             {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
             <Inner as={path ? NavLink : ('div' as any)} onClick={isDisabled ? null : onClick} to={path}>
                 <TextWrapper>
-                    <TextWithOptionalIcon iconSize={IconSize.MEDIUM} iconType={iconType} isTruncatable>
+                    <TextWithOptionalIcon
+                        direction={isParent ? Direction.LTR : Direction.RTL}
+                        iconSize={IconSize.MEDIUM}
+                        iconType={iconType}
+                        isChildMenuItem={isChildMenuItem}
+                        isTruncatable
+                    >
                         {children}
                     </TextWithOptionalIcon>
                 </TextWrapper>

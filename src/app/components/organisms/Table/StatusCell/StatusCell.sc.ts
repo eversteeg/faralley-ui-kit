@@ -1,9 +1,11 @@
+import getStatusColor, { StatusComponents } from '../../../../styles/mixins/getStatusColor';
 import StatusIndicator from '../../../atoms/StatusIndicator/StatusIndicator';
 import styled from 'styled-components';
 
 export const StyledStatusIndicator = styled(StatusIndicator)`
     display: flex;
     height: 100%;
+    color: ${({ status, theme }): string => getStatusColor(status, theme, StatusComponents.TABLE)};
 `;
 
 export const ImageWrapper = styled.div`

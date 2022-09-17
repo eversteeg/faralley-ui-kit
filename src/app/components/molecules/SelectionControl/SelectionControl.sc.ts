@@ -90,7 +90,7 @@ export const InputWrapper = styled.div<InputWrapperProps>`
         opacity: 0;
         z-index: 1;
         border-radius: 100%;
-        background-color: ${({ theme }): string => theme.colorTertiary};
+        background-color: ${({ theme }): string => theme.colorSecondaryLight};
         width: 100%;
         height: 100%;
         content: '';

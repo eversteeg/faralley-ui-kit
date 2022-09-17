@@ -62,6 +62,7 @@ IconWrapper.defaultProps = {
 
 interface StyledTextWithOptionalIconProps {
     direction: Direction;
+    isChildMenuItem?: boolean;
 }
 
 export const StyledTextWithOptionalIcon = styled.div<StyledTextWithOptionalIconProps>`
@@ -70,7 +71,8 @@ export const StyledTextWithOptionalIcon = styled.div<StyledTextWithOptionalIconP
     align-items: center;
     justify-content: center;
 
-    ${({ direction, theme }): SimpleInterpolation =>
+    ${({ isChildMenuItem, direction, theme }): SimpleInterpolation =>
+        !isChildMenuItem &&
         direction === Direction.RTL &&
         css`
             ${Text} {
@@ -80,6 +82,22 @@ export const StyledTextWithOptionalIcon = styled.div<StyledTextWithOptionalIconP
             ${IconWrapper} {
                 order: 2;
                 margin: ${theme.spacing(0, 0, 0, 0.75)};
+            }
+        `}
+
+    ${({ isChildMenuItem, direction, theme }): SimpleInterpolation =>
+        isChildMenuItem &&
+        direction === Direction.RTL &&
+        css`
+            ${Text} {
+                order: 1;
+            }
+
+            ${IconWrapper} {
+                position: absolute;
+                right: 0;
+                order: 2;
+                margin: ${theme.spacing(0, 1.5, 0, 0)};
             }
         `}
 `;

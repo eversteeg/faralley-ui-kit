@@ -161,7 +161,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
                                     isButtonDisabled || isDisabled || hasError || isSaving ? undefined : onSaveCallback
                                 }
                                 size={ButtonSize.SMALL}
-                                variant={ButtonVariant.OUTLINE}
+                                variant={ButtonVariant.PRIMARY}
                             >
                                 {textSave}
                             </Button>
@@ -175,7 +175,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
                                 isLoading={isSaving}
                                 onClick={isButtonDisabled || isDisabled ? undefined : setIsBeingEditedCallback}
                                 size={ButtonSize.SMALL}
-                                variant={ButtonVariant.TEXT_ONLY}
+                                variant={ButtonVariant.SECONDARY}
                             >
                                 {textEdit}
                             </Button>

@@ -6,6 +6,25 @@ import Button from './Button';
 
 export default { title: 'molecules/Button' };
 
+export const ConfigurableDanger: FunctionComponent = () => (
+    <Button
+        direction={select('Direction', Direction, Direction.LTR)}
+        iconType={select('Icon type', IconType, IconType.CHECK)}
+        isDisabled={boolean('Is disabled', false)}
+        isFullWidth={boolean('Is full width', false)}
+        isInverted={boolean('Is inverted', false)}
+        isLoading={boolean('Is loading', false)}
+        isTruncatable={boolean('Is Truncatable', false)}
+        onClick={action('On click')}
+        size={select('Size', ButtonSize, ButtonSize.MEDIUM)}
+        transitionDuration={number('Transition duration', 300)}
+        transitionEasing={select('Transition type', Easing, Easing.EASE)}
+        variant={select('Variant', ButtonVariant, ButtonVariant.DANGER)}
+    >
+        {text('Text', 'Configure me!')}
+    </Button>
+);
+
 export const Configurable: FunctionComponent = () => (
     <Button
         isDisabled={boolean('Is disabled', false)}
@@ -17,7 +36,7 @@ export const Configurable: FunctionComponent = () => (
         size={select('Size', ButtonSize, ButtonSize.MEDIUM)}
         transitionDuration={number('Transition duration', 300)}
         transitionEasing={select('Transition type', Easing, Easing.EASE)}
-        variant={select('Variant', ButtonVariant, ButtonVariant.OUTLINE)}
+        variant={select('Variant', ButtonVariant, ButtonVariant.SECONDARY)}
     >
         {text('Text', 'Configure me!')}
     </Button>
@@ -36,7 +55,7 @@ export const ConfigurableWithIcon: FunctionComponent = () => (
         size={select('Size', ButtonSize, ButtonSize.LARGE)}
         transitionDuration={number('Transition duration', 300)}
         transitionEasing={select('Transition type', Easing, Easing.EASE)}
-        variant={select('Variant', ButtonVariant, ButtonVariant.OUTLINE)}
+        variant={select('Variant', ButtonVariant, ButtonVariant.PRIMARY)}
     >
         {text('Text', 'Configure me!')}
     </Button>

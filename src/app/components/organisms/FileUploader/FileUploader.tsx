@@ -210,7 +210,7 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
 
     const button = useMemo(
         () => (
-            <StyledButton iconType={IconType.FOLDERSEARCH} key={dragCounter} variant={ButtonVariant.FILLED}>
+            <StyledButton iconType={IconType.FOLDERSEARCH} key={dragCounter} variant={ButtonVariant.SECONDARY}>
                 {buttonText}
                 <HiddenInput onChange={handleDrop} onClick={onClickCallback} type="file" value={inputValue} />
             </StyledButton>

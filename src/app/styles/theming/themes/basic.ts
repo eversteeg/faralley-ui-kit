@@ -12,20 +12,25 @@ const shades = {
     seven: '#F2F4F6',
     eight: '#FAFBFC',
     nine: '#FFFFFF',
+    ten: '#9BA1C9',
 };
 /* eslint-enable sort-keys */
 
 const background = {
     primary: shades.eight,
+    primaryLight: shades.ten,
     secondary: shades.nine,
-    tertiary: shades.eight,
+    secondaryLight: shades.eight,
 };
 
 const colorAlert = '#EB6500';
-const colorDisabled = shades.six;
+const colorDisabled = shades.five;
+const colorInactive = shades.seven; // Can be seen as resting mode
 const colorInvalid = '#F94E4E';
 const colorPrimary = '#3D4A9A';
+const colorPrimaryLight = shades.ten;
 const colorSecondary = '#009FFD';
+const colorSecondaryLight = '#80CFFE';
 const colorTertiary = '#80CFFE';
 const colorValid = '#2DD67B';
 const colorYellow = '#F8C433';
@@ -37,6 +42,7 @@ const colorText = {
 
 const colorTextContrast = {
     primary: shades.nine,
+    primaryLight: shades.ten,
 };
 
 const fontFamilyPrimaryDefinition = "'Open Sans', arial, sans-serif";
@@ -56,46 +62,153 @@ export const themeBasicDefinition = (fontFamilyPrimary: string, fontFamilySecond
     },
     colorAlert,
     colorDisabled,
+    colorInactive,
     colorInvalid,
     colorPrimary,
+    colorPrimaryLight,
     colorSecondary,
+    colorSecondaryLight,
     colorTertiary,
     colorValid,
     colorYellow,
     background,
     button: {
-        filled: {
+        danger: {
             backgroundColor: {
                 disabled: colorDisabled,
-                hover: colorSecondary,
-                hoverInverted: colorSecondary,
-                inverted: shades.nine,
+                focus: colorInvalid,
+                focusInverted: colorInvalid,
+                hover: '#000001',
+                hoverInverted: '#000001',
+                inverted: colorInvalid,
                 loader: colorTextContrast.primary,
-                loaderInverted: colorText.primary,
-                primary: colorPrimary,
+                loaderInverted: colorTextContrast.primary,
+                primary: colorInvalid,
+            },
+            border: {
+                focus: '#FB8989',
+                focusInverted: '#FB8989',
+                hover: '#000001',
+                hoverInverted: '#000001',
+                inverted: colorInvalid,
+                primary: colorInvalid,
             },
             color: {
                 disabled: shades.nine,
                 hover: shades.nine,
                 hoverInverted: shades.nine,
+                inverted: shades.nine,
+                primary: shades.nine,
+            },
+        },
+        primary: {
+            backgroundColor: {
+                disabled: colorDisabled,
+                focus: colorSecondary,
+                focusInverted: colorSecondary,
+                hover: colorSecondaryLight,
+                hoverInverted: colorSecondaryLight,
+                inverted: colorSecondary,
+                loader: colorTextContrast.primary,
+                loaderInverted: colorTextContrast.primary,
+                primary: colorSecondary,
+            },
+            border: {
+                focus: colorSecondaryLight,
+                focusInverted: colorSecondaryLight,
+                hover: colorSecondaryLight,
+                hoverInverted: colorSecondaryLight,
+                inverted: colorSecondary,
+                primary: colorSecondary,
+            },
+            color: {
+                disabled: shades.nine,
+                hover: shades.nine,
+                hoverInverted: shades.nine,
+                inverted: shades.nine,
+                primary: shades.nine,
+            },
+        },
+        primaryLight: {
+            backgroundColor: {
+                disabled: colorDisabled,
+                focus: colorSecondary,
+                focusInverted: colorSecondary,
+                hover: colorSecondaryLight,
+                hoverInverted: colorSecondaryLight,
+                inverted: colorSecondary,
+                loader: colorTextContrast.primaryLight,
+                loaderInverted: colorTextContrast.primaryLight,
+                primary: colorSecondary,
+            },
+            border: {
+                focus: colorSecondaryLight,
+                focusInverted: colorSecondaryLight,
+                hover: colorSecondaryLight,
+                hoverInverted: colorSecondaryLight,
+                inverted: colorSecondary,
+                primary: colorSecondary,
+            },
+            color: {
+                disabled: shades.nine,
+                hover: shades.nine,
+                hoverInverted: shades.nine,
+                inverted: shades.nine,
+                primary: shades.nine,
+            },
+        },
+        secondary: {
+            backgroundColor: {
+                disabled: colorDisabled,
+                focus: colorPrimary,
+                focusInverted: shades.nine,
+                hover: '#9BA1C9',
+                hoverInverted: shades.nine,
+                inverted: shades.nine,
+                loader: shades.nine,
+                loaderInverted: colorPrimary,
+                primary: colorPrimary,
+            },
+            border: {
+                focus: '#9BA1C9',
+                focusInverted: '#9BA1C9',
+                hover: '#9BA1C9',
+                hoverInverted: shades.nine,
+                inverted: shades.nine,
+                primary: colorPrimary,
+            },
+            color: {
+                disabled: shades.nine,
+                hover: shades.nine,
+                hoverInverted: colorSecondary,
                 inverted: colorPrimary,
                 primary: shades.nine,
             },
         },
-        outline: {
+        secondaryLight: {
             backgroundColor: {
-                disabled: colorDisabled,
-                hover: colorSecondary,
+                disabled: shades.nine,
+                focus: '#CCCFE3',
+                focusInverted: colorPrimary,
+                hover: shades.nine,
                 hoverInverted: colorSecondary,
+                inverted: colorPrimary,
+                loader: colorPrimary,
+                loaderInverted: shades.nine,
+                primary: shades.nine,
+            },
+            border: {
+                focus: colorPrimary,
+                focusInverted: shades.nine,
+                hover: colorSecondary,
+                hoverInverted: shades.nine,
                 inverted: shades.nine,
-                loader: colorText.primary,
-                loaderInverted: colorTextContrast.primary,
                 primary: colorPrimary,
             },
             color: {
                 disabled: colorDisabled,
                 hover: colorSecondary,
-                hoverInverted: colorSecondary,
+                hoverInverted: shades.nine,
                 inverted: shades.nine,
                 primary: colorPrimary,
             },

@@ -1,32 +1,47 @@
-import { Circle, Header, Indicator, Item, ItemWrapper, Row, StyledTableSkeleton, SubHeader } from './TableSkeleton.sc';
+import {
+    Circle,
+    Header,
+    Indicator,
+    Item,
+    ItemWrapper,
+    Row,
+    StyledTableSkeleton,
+    TableHeader,
+    TablePaginator,
+    TablePaginatorRow,
+} from './TableSkeleton.sc';
 import React, { FunctionComponent } from 'react';
 import Skeleton from '../../../molecules/Skeleton/Skeleton';
 
 export interface TableSkeletonProps {
-    isHeaderVisible?: boolean;
+    isPaginatorVisible?: boolean;
+    isTableHeaderVisible?: boolean;
+    isTitleVisible?: boolean;
     numberOfRowsPerTable?: number;
     numberOfTables?: number;
     showRowsInCard?: boolean;
 }
 
 export const TableSkeleton: FunctionComponent<TableSkeletonProps> = ({
-    isHeaderVisible = false,
+    isPaginatorVisible = false,
+    isTableHeaderVisible = true,
+    isTitleVisible = false,
     numberOfRowsPerTable = 5,
     numberOfTables = 1,
     showRowsInCard = false,
 }) => (
     <>
         {Array.from(Array(numberOfTables).keys()).map((keyTable) => (
-            <StyledTableSkeleton key={keyTable}>
-                {isHeaderVisible && (
-                    <>
-                        <Header>
-                            <Skeleton />
-                        </Header>
-                        <SubHeader>
-                            <Skeleton />
-                        </SubHeader>
-                    </>
+            <StyledTableSkeleton id={`${StyledTableSkeleton}keyTable`} key={keyTable}>
+                {isTitleVisible && (
+                    <Header>
+                        <Skeleton />
+                    </Header>
+                )}
+                {isTableHeaderVisible && (
+                    <TableHeader>
+                        <Skeleton />
+                    </TableHeader>
                 )}
                 <ItemWrapper showRowsInCard={showRowsInCard}>
                     {Array.from(Array(numberOfRowsPerTable).keys()).map((keyRow) => (
@@ -43,6 +58,13 @@ export const TableSkeleton: FunctionComponent<TableSkeletonProps> = ({
                         </Item>
                     ))}
                 </ItemWrapper>
+                {isPaginatorVisible && (
+                    <TablePaginatorRow id="TablePaginatorRow">
+                        <TablePaginator>
+                            <Skeleton />
+                        </TablePaginator>
+                    </TablePaginatorRow>
+                )}
             </StyledTableSkeleton>
         ))}
     </>

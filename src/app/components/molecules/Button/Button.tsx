@@ -41,7 +41,7 @@ export const Button: FunctionComponent<ButtonProps & { [key: string]: unknown }>
     size = ButtonSize.LARGE,
     transitionDuration = 300,
     transitionEasing = Easing.EASE,
-    variant = ButtonVariant.OUTLINE,
+    variant = ButtonVariant.PRIMARY,
     ...rest
 }) => (
     <StyledButton

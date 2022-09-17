@@ -71,7 +71,7 @@ export const Configurable: FunctionComponent = () => {
                 onClick={(): void => {
                     setIsVisible(true);
                 }}
-                variant={ButtonVariant.FILLED}
+                variant={ButtonVariant.PRIMARY}
             >
                 {isVisible ? 'Dialog is showing' : 'Show dialog'}
             </Button>
@@ -146,7 +146,7 @@ export const ConfigurableChangingHeight: FunctionComponent = () => {
                 onClick={(): void => {
                     setIsVisible(true);
                 }}
-                variant={ButtonVariant.FILLED}
+                variant={ButtonVariant.PRIMARY}
             >
                 {isVisible ? 'Dialog is showing' : 'Show dialog'}
             </Button>
@@ -198,7 +198,7 @@ export const ConfigurableAlert: FunctionComponent = () => {
                 onClick={(): void => {
                     setIsVisible(true);
                 }}
-                variant={ButtonVariant.FILLED}
+                variant={ButtonVariant.PRIMARY}
             >
                 {isVisible ? 'Dialog is showing' : 'Show dialog'}
             </Button>
@@ -237,7 +237,7 @@ export const ConfigurableAlertWithContent: FunctionComponent = () => {
                 onClick={(): void => {
                     setIsVisible(true);
                 }}
-                variant={ButtonVariant.FILLED}
+                variant={ButtonVariant.PRIMARY}
             >
                 {isVisible ? 'Dialog is showing' : 'Show dialog'}
             </Button>
@@ -290,7 +290,7 @@ export const ConfigurableAlertWithInput: FunctionComponent = () => {
                 onClick={(): void => {
                     setIsVisible(true);
                 }}
-                variant={ButtonVariant.FILLED}
+                variant={ButtonVariant.PRIMARY}
             >
                 {isVisible ? 'Dialog is showing' : 'Show dialog'}
             </Button>
@@ -360,7 +360,7 @@ export const ConfigurableAlertWithDatePicker: FunctionComponent = () => {
                 onClick={(): void => {
                     setIsVisible(true);
                 }}
-                variant={ButtonVariant.FILLED}
+                variant={ButtonVariant.PRIMARY}
             >
                 {isVisible ? 'Dialog is showing' : 'Show dialog'}
             </Button>

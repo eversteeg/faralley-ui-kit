@@ -7,22 +7,22 @@ export const ToggleButton = styled(Button)`
     ${({ isInverted, theme, isDisabled }): SimpleInterpolation => {
         if (isDisabled) {
             return css`
-                border-color: ${theme.button.filled.backgroundColor.disabled};
-                background-color: ${theme.button.filled.backgroundColor.disabled};
-                color: ${theme.button.filled.color.disabled};
+                border-color: ${theme.button.secondary.backgroundColor.disabled};
+                background-color: ${theme.button.secondary.backgroundColor.disabled};
+                color: ${theme.button.secondary.color.disabled};
             `;
         }
 
         if (isInverted) {
             return css`
-                border-color: ${theme.button.filled.backgroundColor.disabled};
-                background-color: ${theme.button.filled.backgroundColor.disabled};
+                border-color: ${theme.button.secondary.backgroundColor.disabled};
+                background-color: ${theme.button.secondary.backgroundColor.disabled};
             `;
         }
 
         const colors = `
-            border-color: ${theme.button.filled.backgroundColor.primary};
-            background-color: ${theme.button.filled.backgroundColor.primary};
+            border-color: ${theme.button.secondary.backgroundColor.primary};
+            background-color: ${theme.button.secondary.backgroundColor.primary};
         `;
 
         return css`

@@ -239,3 +239,6 @@ export { TableSkeleton, TableSkeletonProps } from '../app/components/organisms/T
 export { ToggleCheckbox, ToggleCheckboxProps } from '../app/components/organisms/ToggleCheckbox/ToggleCheckbox';
 export { Tab, Tabs, TabsProps, TabHeaders, TabPanel } from '../app/components/organisms/Tabs';
 export { Toolbar, ToolbarProps } from '../app/components/organisms/Toolbar/Toolbar';
+
+// Export Context API
+export { ConfigProvider, useConfigContext, ConfigContext } from '../app/context/Config';

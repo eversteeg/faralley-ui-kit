@@ -207,7 +207,11 @@ Body.defaultProps = {
     theme: themeBasic,
 };
 
-export const StyledTextWithOptionalIcon = styled(TextWithOptionalIcon)`
+interface StyledTextWithOptionalIconProps {
+    status: Status;
+}
+
+export const StyledTextWithOptionalIcon = styled(TextWithOptionalIcon)<StyledTextWithOptionalIconProps>`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().buttonLarge)}
     justify-content: flex-start;
     margin: ${({ theme }): string => theme.spacing(1, 0, 2, 0)};
@@ -216,6 +220,18 @@ export const StyledTextWithOptionalIcon = styled(TextWithOptionalIcon)`
     ${TText} {
         margin: ${({ theme }): string => theme.spacing(0, 0, 0, 0.5)};
     }
+
+    ${({ status, theme }): SimpleInterpolation =>
+        status === Status.ALERT &&
+        css`
+            color: ${theme.colorAlert};
+        `}
+
+    ${({ status, theme }): SimpleInterpolation =>
+        status === Status.INVALID &&
+        css`
+            color: ${theme.colorInvalid};
+        `}
 `;
 
 interface ContentProps {

@@ -18,10 +18,28 @@ export const Header = styled.div`
     }
 `;
 
-export const SubHeader = styled.div`
+export const TableHeader = styled.div`
     margin: 16px 0 0;
     width: 50%;
     height: 18px;
+
+    span {
+        width: 100%;
+        height: 100%;
+    }
+`;
+
+export const TablePaginatorRow = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 16px 0 0; /* Correction for margin in ItemWrapper */
+    width: 100%;
+    height: 24px;
+`;
+
+export const TablePaginator = styled.div`
+    width: 20%;
+    height: 24px;
 
     span {
         width: 100%;

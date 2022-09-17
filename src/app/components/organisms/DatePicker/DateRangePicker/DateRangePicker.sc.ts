@@ -42,7 +42,7 @@ export const StyledDateRangePicker = styled.div<StyledDateRangePickerProps>`
     }
 
     .CalendarDay__default.CalendarDay__selected_span {
-        background-color: ${({ theme }): string => theme.colorTertiary};
+        background-color: ${({ theme }): string => theme.colorSecondaryLight};
         color: ${({ theme }): string => theme.colorTextContrast.primary};
     }
 

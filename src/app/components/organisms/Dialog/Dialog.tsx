@@ -107,7 +107,9 @@ export const Dialog: FunctionComponent<DialogProps> = ({
                     {header && <Header hasHeaderPadding={hasHeaderPadding}>{header}</Header>}
                     <Body hasBodyPadding={hasBodyPadding} hasBorderRadius={isEmpty(header)}>
                         {iconType && title && (
-                            <StyledTextWithOptionalIcon iconType={iconType}>{title}</StyledTextWithOptionalIcon>
+                            <StyledTextWithOptionalIcon iconType={iconType} status={status}>
+                                {title}
+                            </StyledTextWithOptionalIcon>
                         )}
                         <Content iconPlacement={iconPlacement}>
                             {iconType && !title && (

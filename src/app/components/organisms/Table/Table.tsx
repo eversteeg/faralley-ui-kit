@@ -6,6 +6,7 @@
 // Documentation: https://react-table.tanstack.com/docs/overview
 
 import { Alignment, Elevation, IconType } from '../../../types';
+import Button, { ButtonProps } from '../../molecules/Button/Button';
 import ButtonIcon, { ButtonIconProps } from '../../molecules/ButtonIcon/ButtonIcon';
 import {
     FooterWrapper,
@@ -59,7 +60,9 @@ export interface TableProps<T extends object> {
     texts?: TableTexts;
 }
 
-export interface TableColumnActionButtonProps<T extends object> extends ButtonIconProps {
+export interface TableColumnActionButtonProps<T extends object> {
+    button?: ButtonProps;
+    icon?: ButtonIconProps;
     isRowAction?: boolean;
     onClickAction?: (event: SyntheticEvent, row?: Row<T>, tableState?: TableState<T>) => void;
 }
@@ -293,11 +296,27 @@ export const Table = <T extends object>({
                                                                 cell.column
                                                                     .actionButtons(row)
                                                                     ?.map((buttonProps, propIndex) => {
-                                                                        const { onClickAction, ...restButtonProps } =
-                                                                            buttonProps;
+                                                                        const { onClickAction } = buttonProps;
+
+                                                                        if (buttonProps.icon) {
+                                                                            return (
+                                                                                <ButtonIcon
+                                                                                    // eslint-disable-next-line react/no-array-index-key
+                                                                                    key={propIndex}
+                                                                                    onClick={(event) =>
+                                                                                        onClickAction?.(
+                                                                                            event,
+                                                                                            row,
+                                                                                            instance.state
+                                                                                        )
+                                                                                    }
+                                                                                    {...buttonProps.icon}
+                                                                                />
+                                                                            );
+                                                                        }
 
                                                                         return (
-                                                                            <ButtonIcon
+                                                                            <Button
                                                                                 // eslint-disable-next-line react/no-array-index-key
                                                                                 key={propIndex}
                                                                                 onClick={(event) =>
@@ -307,7 +326,7 @@ export const Table = <T extends object>({
                                                                                         instance.state
                                                                                     )
                                                                                 }
-                                                                                {...restButtonProps}
+                                                                                {...buttonProps.button}
                                                                             />
                                                                         );
                                                                     })

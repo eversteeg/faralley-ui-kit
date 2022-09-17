@@ -18,8 +18,10 @@ export enum ButtonSize {
 }
 
 export enum ButtonVariant {
-    FILLED = 'FILLED',
-    OUTLINE = 'OUTLINE',
+    DANGER = 'DANGER',
+    PRIMARY = 'PRIMARY',
+    SECONDARY = 'SECONDARY',
+    SECONDARYLIGHT = 'SECONDARYLIGHT',
     TEXT_ONLY = 'TEXT_ONLY',
 }
 
@@ -529,6 +531,36 @@ export interface OptionObject {
     value: string | number;
 }
 
+/* Specific part to prevent duplicating */
+interface ButtonStyleProps {
+    backgroundColor: {
+        disabled: string;
+        focus: string;
+        focusInverted: string;
+        hover: string;
+        hoverInverted: string;
+        inverted: string;
+        loader: string;
+        loaderInverted: string;
+        primary: string;
+    };
+    border: {
+        focus: string;
+        focusInverted: string;
+        hover: string;
+        hoverInverted: string;
+        inverted: string;
+        primary: string;
+    };
+    color: {
+        disabled: string;
+        hover: string;
+        hoverInverted: string;
+        inverted: string;
+        primary: string;
+    };
+}
+
 export interface Theme {
     shades: {
         one: string;
@@ -540,18 +572,22 @@ export interface Theme {
         seven: string;
         eight: string;
         nine: string;
+        ten: string;
     };
     colorPrimary: string;
+    colorPrimaryLight: string;
     colorSecondary: string;
-    colorTertiary: string;
+    colorSecondaryLight: string;
     colorAlert: string;
     colorDisabled: string;
+    colorInactive: string;
     colorInvalid: string;
     colorValid: string;
     fontFamilyPrimary: string;
     fontFamilySecondary: string;
     colorTextContrast: {
         primary: string;
+        primaryLight: string;
     };
     colorText: {
         primary: string;
@@ -564,45 +600,14 @@ export interface Theme {
     background: {
         primary: string;
         secondary: string;
-        tertiary: string;
+        secondaryLight: string;
     };
     button: {
-        filled: {
-            backgroundColor: {
-                disabled: string;
-                hover: string;
-                hoverInverted: string;
-                inverted: string;
-                loader: string;
-                loaderInverted: string;
-                primary: string;
-            };
-            color: {
-                disabled: string;
-                hover: string;
-                hoverInverted: string;
-                inverted: string;
-                primary: string;
-            };
-        };
-        outline: {
-            backgroundColor: {
-                disabled: string;
-                hover: string;
-                hoverInverted: string;
-                inverted: string;
-                loader: string;
-                loaderInverted: string;
-                primary: string;
-            };
-            color: {
-                disabled: string;
-                hover: string;
-                hoverInverted: string;
-                inverted: string;
-                primary: string;
-            };
-        };
+        danger: ButtonStyleProps;
+        primary: ButtonStyleProps;
+        primaryLight: ButtonStyleProps;
+        secondary: ButtonStyleProps;
+        secondaryLight: ButtonStyleProps;
         textOnly: {
             disabled: string;
             disabledInverted: string;

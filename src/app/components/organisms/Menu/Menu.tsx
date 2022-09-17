@@ -45,7 +45,10 @@ export const Menu: FunctionComponent<MenuProps> = ({ className, defaultOpenItemP
                             {isOpen &&
                                 children.map((child) => (
                                     <Item
+                                        iconType={child.iconType}
+                                        isChildMenuItem
                                         isDisabled={child.isDisabled}
+                                        isParent={false}
                                         isVisible={child.isVisible}
                                         key={child.path}
                                         onClick={child.onClick}

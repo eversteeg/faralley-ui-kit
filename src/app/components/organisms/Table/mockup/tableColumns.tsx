@@ -282,7 +282,7 @@ export const tableColumnsWithActionButtons = (
 
             if (row.original.id !== '1') {
                 buttonProps.push({
-                    iconType: IconType.TRASHCAN,
+                    icon: { iconType: IconType.TRASHCAN },
                     onClickAction: (event) => {
                         event.stopPropagation();
                         // eslint-disable-next-line no-alert
@@ -295,7 +295,7 @@ export const tableColumnsWithActionButtons = (
             }
 
             buttonProps.push({
-                iconType: IconType.PENCIL,
+                icon: { iconType: IconType.PENCIL },
                 isRowAction: false,
                 onClickAction: (event) => {
                     event.stopPropagation();

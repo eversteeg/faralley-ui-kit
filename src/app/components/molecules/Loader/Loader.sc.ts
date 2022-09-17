@@ -43,19 +43,35 @@ export const StyledLoader = styled.div<StyledLoaderProps>`
         /* This is a special part for loader inside a button */
         /* Should only do something when variant is not undefined */
         ${({ isInverted, theme: { button }, variant }): SimpleInterpolation =>
-            variant === ButtonVariant.FILLED &&
+            variant === ButtonVariant.DANGER &&
             css`
                 background-color: ${isInverted
-                    ? button.filled.backgroundColor.loaderInverted
-                    : button.filled.backgroundColor.loader};
+                    ? button.danger.backgroundColor.loaderInverted
+                    : button.danger.backgroundColor.loader};
             `}
 
         ${({ isInverted, theme: { button }, variant }): SimpleInterpolation =>
-            variant === ButtonVariant.OUTLINE &&
+            variant === ButtonVariant.PRIMARY &&
             css`
                 background-color: ${isInverted
-                    ? button.outline.backgroundColor.loaderInverted
-                    : button.outline.backgroundColor.loader};
+                    ? button.primary.backgroundColor.loaderInverted
+                    : button.primary.backgroundColor.loader};
+            `}
+
+        ${({ isInverted, theme: { button }, variant }): SimpleInterpolation =>
+            variant === ButtonVariant.SECONDARY &&
+            css`
+                background-color: ${isInverted
+                    ? button.secondary.backgroundColor.loaderInverted
+                    : button.secondary.backgroundColor.loader};
+            `}
+
+        ${({ isInverted, theme: { button }, variant }): SimpleInterpolation =>
+            variant === ButtonVariant.SECONDARYLIGHT &&
+            css`
+                background-color: ${isInverted
+                    ? button.secondaryLight.backgroundColor.loaderInverted
+                    : button.secondaryLight.backgroundColor.loader};
             `}
 
         ${({ isInverted, theme: { button }, variant }): SimpleInterpolation =>

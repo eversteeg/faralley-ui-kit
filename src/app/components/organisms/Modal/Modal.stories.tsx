@@ -45,7 +45,7 @@ export const ConfigurableModal: FunctionComponent = () => {
                     action('On back');
                     setIsVisible(true);
                 }}
-                variant={ButtonVariant.FILLED}
+                variant={ButtonVariant.PRIMARY}
             >
                 {isVisible ? 'MODAL IS SHOWING' : 'SHOW MODAL'}
             </Button>

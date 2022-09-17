@@ -47,10 +47,14 @@ export const menuItems: MenuItems = [
     {
         children: [
             {
+                iconType: IconType.ARROWRIGHTUP,
+                isChildMenuItem: true,
                 path: '/competitie/teams',
                 text: 'Teams',
             },
             {
+                iconType: IconType.ARROWRIGHTUP,
+                isChildMenuItem: true,
                 path: '/competitie/officials',
                 text: 'Officials',
             },

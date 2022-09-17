@@ -48,7 +48,7 @@ export const Configurable: FunctionComponent = () => {
                 onClick={(): void => {
                     setIsVisible(true);
                 }}
-                variant={ButtonVariant.FILLED}
+                variant={ButtonVariant.PRIMARY}
             >
                 {isVisible ? 'Dialog is showing' : 'Show dialog'}
             </Button>

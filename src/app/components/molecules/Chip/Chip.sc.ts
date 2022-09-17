@@ -17,7 +17,7 @@ interface StyledChipProps {
 export const StyledChip = styled.button<StyledChipProps>`
     ${setBoxSizing()}
     ${rippleEffectInit()}
-    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().buttonSmall)}
     ${({ transitionDuration, transitionEasing }): FlattenSimpleInterpolation =>
         transitionEffect({
             duration: transitionDuration,
@@ -39,9 +39,16 @@ export const StyledChip = styled.button<StyledChipProps>`
             color: ${theme.colorDisabled};
             pointer-events: none;
         `}
+    ${({ isSelected, isDisabled, theme }): SimpleInterpolation =>
+        isSelected &&
+        !isDisabled &&
+        css`
+            background-color: ${theme.colorPrimary};
+            color: ${theme.shades.nine};
+        `}
 
     &::after {
-        ${({ isHoverable, theme }): SimpleInterpolation => isHoverable && rippleEffect(theme.colorTertiary)}
+        ${({ isHoverable, theme }): SimpleInterpolation => isHoverable && rippleEffect(theme.colorSecondaryLight)}
     }
 
     &:active,
@@ -55,6 +62,7 @@ export const StyledChip = styled.button<StyledChipProps>`
                     theme,
                 })};
                 /* stylelint-enable indentation */
+                background-color: transparent;
                 color: ${theme.colorSecondary};
             `}
     }

@@ -21,7 +21,7 @@ export const Chip: FunctionComponent<ChipProps & { [key: string]: any }> = ({
     children,
     className,
     direction = Direction.LTR,
-    iconSize = IconSize.MEDIUM,
+    iconSize = IconSize.SMALL,
     iconType,
     isDisabled = false,
     isSelected = true,
