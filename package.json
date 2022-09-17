@@ -39,7 +39,7 @@
         "check-all": "npm run lint:css && npm run lint:js && npm run check-types",
         "check-types": "tsc --noEmit",
         "clean": "npx rimraf index.d.ts index.js index.esm.js fonts main.css",
-        "dist": "npm run build:prod && npm run build:types",
+        "dist": "npm run build:prod && npm run build:typeswindows",
         "lint:css": "stylelint \"./src/**/*.ts\"",
         "lint:js": "eslint \"src\" --ext \".ts,.tsx\"",
         "storybook": "start-storybook -c ./src/.storybook -s ./public --port 3434 --quiet",
