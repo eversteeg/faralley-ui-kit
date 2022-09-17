@@ -1,70 +1,52 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export default {
     calendar: {
-        lastDay: '[Вчора] LT',
-        lastWeek: '[Минулої] dddd [б] LT',
-        nextDay: '[Завтра] LT',
-        nextWeek: '[У] dddd [б] LT',
-        sameDay: '[Сьогодні] LT',
+        lastDay: '[Yesterday at] LT',
+        lastWeek: '[Last] dddd [at] LT',
+        nextDay: '[Tomorrow at] LT',
+        nextWeek: 'dddd [at] LT',
+        sameDay: '[Today at] LT',
         sameElse: 'L',
     },
-    dayOfMonthOrdinalParse: /\d{1,2}-(й|го)/,
-    isPM(input: string) {
-        return /^(дня|вечора)$/.test(input);
-    },
+    dayOfMonthOrdinalParse: /\d{1,2}(st|nd|rd|th)/,
     longDateFormat: {
-        L: 'DD.MM.YYYY',
-        LL: 'D MMMM YYYY р.',
-        LLL: 'D MMMM YYYY р., HH:mm',
-        LLLL: 'dddd, D MMMM YYYY р., HH:mm',
-        LT: 'HH:mm',
-        LTS: 'HH:mm:ss',
+        L: 'DD/MM/YYYY',
+        LL: 'D MMMM YYYY',
+        LLL: 'D MMMM YYYY h:mm A',
+        LLLL: 'dddd, D MMMM YYYY h:mm A',
+        LT: 'h:mm A',
+        LTS: 'h:mm:ss A',
     },
-    meridiem(hours: number) {
-        if (hours < 4) {
-            return 'ночі';
-        }
-
-        if (hours < 12) {
-            return 'ранку';
-        }
-
-        if (hours < 17) {
-            return 'дня';
-        }
-
-        return 'вечора';
-    },
-    meridiemParse: /ночі|ранку|дня|вечора/,
-    months: {
-        format: 'січня_лютого_березня_квітня_травня_червня_липня_серпня_вересня_жовтня_листопада_грудня'.split('_'),
-        standalone:
-            'січень_лютий_березень_квітень_травень_червень_липень_серпень_вересень_жовтень_листопад_грудень'.split('_'),
-    },
-    monthsShort: 'січ_лют_бер_квіт_трав_черв_лип_серп_вер_жовт_лист_груд'.split('_'),
+    months: 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
+    monthsShort: 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
     ordinal(number: number) {
-        return `${number}-го`;
+        const b = number % 10;
+        // eslint-disable-next-line no-nested-ternary, no-bitwise
+        const output = ~~((number % 100) / 10) === 1 ? 'th' : b === 1 ? 'st' : b === 2 ? 'nd' : b === 3 ? 'rd' : 'th';
+
+        return `${number}${output}`;
     },
     relativeTime: {
         M: 'a month',
         MM: '%d months',
-        d: 'one day',
+        d: 'a day',
         dd: '%d days',
         future: 'in %s',
-        h: "one o'clock",
+        h: 'an hour',
         hh: '%d hours',
-        m: 'one minute',
+        m: 'a minute',
         mm: '%d minutes',
-        past: 'there is %s',
+        past: '%s ago',
         s: 'a few seconds',
+        ss: '%d seconds',
         y: 'a year',
-        yy: '%d in',
+        yy: '%d years',
     },
     week: {
         dow: 1,
-        doy: 7,
+        doy: 4,
     },
-    weekdays: 'неділя_понеділок_вівторок_середа_четвер_п’ятниця_субота'.split('_'),
-    weekdaysMin: 'нд_пн_вт_ср_чт_пт_сб'.split('_'),
-    weekdaysShort: 'нд_пн_вт_ср_чт_пт_сб'.split('_'),
+    weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
+    weekdaysMin: 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_'),
+    weekdaysShort: 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
 };
