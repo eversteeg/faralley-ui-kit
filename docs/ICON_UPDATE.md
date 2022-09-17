@@ -1,4 +1,4 @@
-# Documentation used for updating the ICON in Sportlink UI kit
+# Documentation used for updating the ICON in FarAlley UI kit
 
 Below are the steps / rules to be followed to update icon in UI KIT:
 - Navigate to the root of this project.

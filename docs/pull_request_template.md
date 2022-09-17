@@ -1,8 +1,5 @@
 ### Pull Request (PR) faralley-ui-kit
 
-**Jira link**:
-*https://jira.faralley.nl/browse/[Paste Jira issue here]*
-
 **Description of the pull request**:
 *The PR description goes here*
 
