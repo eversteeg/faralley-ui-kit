@@ -34,7 +34,6 @@ export interface DateRangePickerProps {
     hasError?: boolean;
     hasYearSelector?: boolean;
     isDayBlocked?: (day: Moment) => boolean;
-    isDayHighlighted?: (day: Moment) => boolean;
     isDisabled?: boolean;
     isOutsideRange?: (day: Moment) => boolean;
     isRequired?: boolean;
@@ -72,7 +71,6 @@ export const DateRangePicker: FunctionComponent<DateRangePickerProps> = ({
     hasError = false,
     hasYearSelector = false,
     isDayBlocked,
-    isDayHighlighted,
     isDisabled = false,
     isOutsideRange,
     isRequired = false,
@@ -213,7 +211,6 @@ export const DateRangePicker: FunctionComponent<DateRangePickerProps> = ({
                         focusedInput={focusedInput}
                         hideKeyboardShortcutsPanel
                         isDayBlocked={isDayBlocked}
-                        isDayHighlighted={isDayHighlighted}
                         isOutsideRange={isOutsideRange}
                         keepOpenOnDateSelect={keepOpenOnDateSelect}
                         minimumNights={minimumNights}

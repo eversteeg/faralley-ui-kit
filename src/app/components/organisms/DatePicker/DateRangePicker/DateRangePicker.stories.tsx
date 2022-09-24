@@ -27,7 +27,6 @@ export const Default: FunctionComponent = () => {
             footerText="Selecteer minimaal twee dagen"
             hasError={boolean('Has error', false)}
             isDayBlocked={(day): boolean => day.day() === 3}
-            isDayHighlighted={(day): boolean => day.day() === 1}
             isDisabled={boolean('Is disabled', false)}
             isOutsideRange={(): false => false}
             isRequired={boolean('Is required', false)}
@@ -51,6 +50,7 @@ export const Default: FunctionComponent = () => {
             }}
             shortcuts={[
                 {
+                    key: 1,
                     onClick: (): void => {
                         setStartDate(moment());
                         setEndDate(moment().add(1, 'd'));
@@ -58,6 +58,7 @@ export const Default: FunctionComponent = () => {
                     text: 'vandaag en morgen',
                 },
                 {
+                    key: 2,
                     onClick: (): void => {
                         setStartDate(moment().day(6));
                         setEndDate(moment().day(6).add(1, 'd'));
@@ -65,6 +66,7 @@ export const Default: FunctionComponent = () => {
                     text: 'aankomend weekend',
                 },
                 {
+                    key: 3,
                     onClick: (): void => {
                         setStartDate(moment());
                         setEndDate(moment().add(13, 'd'));
@@ -72,6 +74,7 @@ export const Default: FunctionComponent = () => {
                     text: 'de komende twee weken',
                 },
                 {
+                    key: 4,
                     onClick: (): void => {
                         setStartDate(moment().add(1, 'M').startOf('month'));
                         setEndDate(moment().add(1, 'M').endOf('month'));
@@ -102,7 +105,6 @@ export const DefaultWithoutShortcuts: FunctionComponent = () => {
             endDatePlaceholderText={text('End date placeholder text', 'Eind datum')}
             focusedInput={focusedInput}
             isDayBlocked={(day): boolean => day.day() === 3}
-            isDayHighlighted={(day): boolean => day.day() === 1}
             isDisabled={boolean('Is disabled', false)}
             isOutsideRange={(): false => false}
             isRequired={boolean('Is required', false)}
@@ -146,7 +148,6 @@ export const DefaultWithoutFooter: FunctionComponent = () => {
             endDatePlaceholderText={text('End date placeholder text', 'Eind datum')}
             focusedInput={focusedInput}
             isDayBlocked={(day): boolean => day.day() === 3}
-            isDayHighlighted={(day): boolean => day.day() === 1}
             isDisabled={boolean('Is disabled', false)}
             isOutsideRange={(): false => false}
             isRequired={boolean('Is required', false)}
@@ -163,6 +164,7 @@ export const DefaultWithoutFooter: FunctionComponent = () => {
             }}
             shortcuts={[
                 {
+                    key: 1,
                     onClick: (): void => {
                         setStartDate(moment());
                         setEndDate(moment().add(1, 'd'));
@@ -170,6 +172,7 @@ export const DefaultWithoutFooter: FunctionComponent = () => {
                     text: 'vandaag en morgen',
                 },
                 {
+                    key: 2,
                     onClick: (): void => {
                         setStartDate(moment().day(6));
                         setEndDate(moment().day(6).add(1, 'd'));
@@ -177,6 +180,7 @@ export const DefaultWithoutFooter: FunctionComponent = () => {
                     text: 'aankomend weekend',
                 },
                 {
+                    key: 3,
                     onClick: (): void => {
                         setStartDate(moment());
                         setEndDate(moment().add(13, 'd'));
@@ -184,6 +188,7 @@ export const DefaultWithoutFooter: FunctionComponent = () => {
                     text: 'de komende twee weken',
                 },
                 {
+                    key: 4,
                     onClick: (): void => {
                         setStartDate(moment().add(1, 'M').startOf('month'));
                         setEndDate(moment().add(1, 'M').endOf('month'));
@@ -212,7 +217,6 @@ export const WithYearSelector: FunctionComponent = () => {
             focusedInput={focusedInput}
             hasYearSelector
             isDayBlocked={(day): boolean => day.day() === 1}
-            isDayHighlighted={(day): boolean => day.day() === 3}
             isDisabled={boolean('Is disabled', false)}
             isRequired={boolean('Is required', false)}
             keepOpenOnDateSelect={boolean('Keep open on date select', true)}
@@ -257,7 +261,6 @@ export const DatePickerAlignRight: FunctionComponent = () => {
                 focusedInput={focusedInput}
                 hasYearSelector
                 isDayBlocked={(day): boolean => day.day() === 1}
-                isDayHighlighted={(day): boolean => day.day() === 3}
                 isDisabled={boolean('Is disabled', false)}
                 isRequired={boolean('Is required', false)}
                 keepOpenOnDateSelect={boolean('Keep open on date select', true)}

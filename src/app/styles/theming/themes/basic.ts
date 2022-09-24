@@ -234,7 +234,7 @@ export const themeBasicDefinition = (fontFamilyPrimary: string, fontFamilySecond
         backgroundColor: shades.nine,
         color: colorPrimary,
         day: {
-            accent: colorPrimary,
+            accent: colorSecondary,
             backgroundColor: shades.seven,
             color: shades.one,
             disabled: {
@@ -242,16 +242,16 @@ export const themeBasicDefinition = (fontFamilyPrimary: string, fontFamilySecond
                 color: colorDisabled,
             },
             hover: {
-                accent: colorSecondary,
-                backgroundColor: colorPrimary,
+                accent: colorSecondaryLight,
+                backgroundColor: colorSecondary,
                 color: shades.nine,
             },
             selected: {
-                backgroundColor: colorSecondary,
+                backgroundColor: colorPrimaryLight,
                 color: shades.nine,
             },
             selectionLimit: {
-                backgroundColor: colorSecondary,
+                backgroundColor: colorPrimary,
                 color: shades.nine,
             },
         },
